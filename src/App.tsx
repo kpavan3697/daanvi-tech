@@ -67,40 +67,76 @@ const stats = [
 
 const clients = [
   {
-    name: 'Industry 4.0',
-    sub: 'Manufacturing & IIoT',
+    name: 'Manufacturing',
+    sub: 'Industry 4.0 & Automation',
     icon: '🏭',
     img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80&auto=format&fit=crop'
   },
   {
     name: 'Healthcare',
-    sub: 'Life Sciences & Diagnostics',
+    sub: 'Hospitals, Diagnostics & Life Sciences',
     icon: '🏥',
     img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80&auto=format&fit=crop'
   },
   {
-    name: 'Agri-Tech',
-    sub: 'Precision Agriculture',
-    icon: '🌾',
-    img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80&auto=format&fit=crop'
+    name: 'Retail & E-Commerce',
+    sub: 'Customer Experience & Digital Commerce',
+    icon: '🛍️',
+    img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80&auto=format&fit=crop'
   },
   {
-    name: 'Clean Energy',
-    sub: 'Energy & Sustainability',
-    icon: '⚡',
-    img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'FinTech',
-    sub: 'Banking & Finance',
+    name: 'Finance',
+    sub: 'Banking, FinTech & Insurance',
     icon: '🏦',
     img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80&auto=format&fit=crop'
   },
   {
-    name: 'Smart Cities',
-    sub: 'Urban & Government',
+    name: 'Education',
+    sub: 'EdTech & Digital Learning',
+    icon: '🎓',
+    img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Logistics',
+    sub: 'Supply Chain & Transportation',
+    icon: '🚚',
+    img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Real Estate',
+    sub: 'Smart Infrastructure & Property Tech',
     icon: '🏙️',
     img: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Agriculture',
+    sub: 'Agri-Tech & Smart Farming',
+    icon: '🌾',
+    img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Energy',
+    sub: 'Clean Energy & Sustainability',
+    icon: '⚡',
+    img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Government',
+    sub: 'Smart Cities & Public Services',
+    icon: '🏛️',
+    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Hospitality',
+    sub: 'Hotels, Travel & Tourism',
+    icon: '🏨',
+    img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80&auto=format&fit=crop'
+  },
+  {
+    name: 'Technology',
+    sub: 'AI, SaaS & Digital Platforms',
+    icon: '💻',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80&auto=format&fit=crop'
   }
 ]
 
