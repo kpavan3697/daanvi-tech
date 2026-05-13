@@ -258,7 +258,6 @@ export default function App() {
         setForm({ name: '', email: '', phone: '', subject: '', message: '' })
         setErrors({})
         setTouched({})
-        setToast({ msg: " Message sent! We'll be in touch soon.", ok: true })
       } else {
         throw new Error('Submit failed')
       }
@@ -791,7 +790,7 @@ export default function App() {
                 {formStatus === 'loading'
                   ? <><span className="btn-spinner" /> Sending…</>
                   : formStatus === 'success'
-                  ? <>✅ Message Sent!</>
+                  ? <>✅ Message sent! We'll be in touch soon.</>
                   : <>Send Message <span className="btn-arrow">→</span></>}
               </button>
             </form>
