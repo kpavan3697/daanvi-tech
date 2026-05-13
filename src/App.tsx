@@ -9,8 +9,8 @@ const t = {
   clients: 'Sectors',
   careers: 'Careers',
   contact: 'Contact',
-  hero: 'Building the Intelligence Layer of the Next Decade',
-  sub: 'Daanvi Technologies is at the intersection of Agentic AI, Edge Intelligence, and physical-world IoT — engineering the autonomous systems, green platforms, and vertical AI solutions that will define enterprise technology through 2035.'
+  hero: 'Engineering the Enterprise Technology of the Next Decade',
+  sub: 'Daanvi Technologies builds across Agentic AI, Edge Intelligence & IIoT, GreenTech, Vertical AI, Web & Mobile, and IT Staffing — delivering the intelligent systems and engineering teams that will define enterprise technology through 2035.'
 }
 
 const services = [
@@ -22,7 +22,7 @@ const services = [
     tag: 'Ship Fast'
   },
   {
-    title: 'IT Outsourcing & Staff Aug',
+    title: 'IT Outsourcing & Staff Augmentation',
     icon: '🤝',
     img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop',
     desc: 'Dedicated engineering teams, staff augmentation, and offshore development — skilled talent that plugs into your workflow from day one.',
@@ -43,7 +43,7 @@ const services = [
     tag: 'Edge-Native'
   },
   {
-    title: 'GreenTech & ESG Platform',
+    title: 'GreenTech & ESG Solutions',
     icon: '🌱',
     img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=80&auto=format&fit=crop',
     desc: 'Carbon tracking, energy optimisation, and automated ESG compliance reporting — turning sustainability mandates into measurable advantage.',
@@ -51,7 +51,7 @@ const services = [
   },
   {
     title: 'Vertical AI Solutions',
-    icon: '🧬',
+    icon: '🎯',
     img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80&auto=format&fit=crop',
     desc: 'Deep-domain AI for Healthcare diagnostics, Precision Agriculture, and Smart Manufacturing — purpose-built for high-impact industries.',
     tag: 'Industry-Specific'
@@ -61,82 +61,65 @@ const services = [
 const stats = [
   { value: '2026', label: 'Year Founded' },
   { value: '6', label: 'Core Services' },
-  { value: '6', label: 'Target Sectors' },
-  { value: '∞', label: 'Ambition' }
+  { value: '11', label: 'Domain Categories' },
+  { value: '80+', label: 'Industry Domains' }
 ]
 
-const clients = [
+const sectorGroups = [
   {
-    name: 'Manufacturing',
-    sub: 'Industry 4.0 & Automation',
-    icon: '🏭',
-    img: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80&auto=format&fit=crop'
+    category: 'Enterprise & Business Systems',
+    icon: '🏢',
+    sectors: ['ERP Systems', 'CRM Platforms', 'HRMS Solutions', 'Business Automation', 'Workflow Automation', 'Enterprise Portals', 'Accounting Systems', 'Document Management']
   },
   {
-    name: 'Healthcare',
-    sub: 'Hospitals, Diagnostics & Life Sciences',
-    icon: '🏥',
-    img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Retail & E-Commerce',
-    sub: 'Customer Experience & Digital Commerce',
-    icon: '🛍️',
-    img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Finance',
-    sub: 'Banking, FinTech & Insurance',
+    category: 'Banking & Financial Systems',
     icon: '🏦',
-    img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80&auto=format&fit=crop'
+    sectors: ['Core Banking Systems', 'FinTech Platforms', 'Digital Payments', 'Insurance Technology', 'Trading Platforms', 'Risk & Compliance Systems', 'Lending Platforms', 'Wealth Management Systems']
   },
   {
-    name: 'Education',
-    sub: 'EdTech & Digital Learning',
-    icon: '🎓',
-    img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&q=80&auto=format&fit=crop'
+    category: 'AI & Data Engineering',
+    icon: '🤖',
+    sectors: ['Generative AI Applications', 'Agentic AI Systems', 'Machine Learning Pipelines', 'Deep Learning Systems', 'Computer Vision', 'Natural Language Processing', 'Predictive Analytics', 'Recommendation Engines', 'Data Engineering', 'Business Intelligence']
   },
   {
-    name: 'Logistics',
-    sub: 'Supply Chain & Transportation',
-    icon: '🚚',
-    img: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80&auto=format&fit=crop'
+    category: 'Cloud, Storage & Infrastructure',
+    icon: '☁️',
+    sectors: ['Cloud Computing Platforms', 'Cloud Migration', 'Distributed Systems', 'Data Lakes', 'Data Warehousing', 'Big Data Platforms', 'High-Performance Storage Systems', 'Backup & Disaster Recovery', 'DevOps Automation', 'Kubernetes & Microservices']
   },
   {
-    name: 'Real Estate',
-    sub: 'Smart Infrastructure & Property Tech',
-    icon: '🏙️',
-    img: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Agriculture',
-    sub: 'Agri-Tech & Smart Farming',
-    icon: '🌾',
-    img: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Energy',
-    sub: 'Clean Energy & Sustainability',
-    icon: '⚡',
-    img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Government',
-    sub: 'Smart Cities & Public Services',
-    icon: '🏛️',
-    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Hospitality',
-    sub: 'Hotels, Travel & Tourism',
-    icon: '🏨',
-    img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80&auto=format&fit=crop'
-  },
-  {
-    name: 'Technology',
-    sub: 'AI, SaaS & Digital Platforms',
+    category: 'Web, Mobile & SaaS',
     icon: '💻',
-    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80&auto=format&fit=crop'
+    sectors: ['Web Applications', 'Mobile Applications', 'Progressive Web Apps', 'SaaS Platforms', 'E-Commerce Systems', 'Frontend Engineering', 'Backend Engineering', 'API Development', 'Cross-Platform Apps']
+  },
+  {
+    category: 'Education & Knowledge Systems',
+    icon: '🎓',
+    sectors: ['EdTech Platforms', 'Learning Management Systems', 'Online Learning Platforms', 'Virtual Classrooms', 'Assessment Systems', 'Skill Development Platforms', 'Corporate Training Systems']
+  },
+  {
+    category: 'Healthcare & Life Sciences',
+    icon: '🏥',
+    sectors: ['Hospital Management Systems', 'Telemedicine Platforms', 'Medical Diagnostics Software', 'Electronic Health Records (EHR)', 'Pharmaceutical Systems', 'Biotech Platforms', 'Health Monitoring Systems']
+  },
+  {
+    category: 'Industrial & IoT Systems',
+    icon: '🏭',
+    sectors: ['Industrial IoT', 'Smart Manufacturing Systems', 'Edge Computing', 'Digital Twins', 'Embedded Systems', 'Real-Time Monitoring', 'Automation Platforms', 'Sensor Data Systems']
+  },
+  {
+    category: 'Cybersecurity & Compliance',
+    icon: '🔐',
+    sectors: ['Application Security', 'Cloud Security', 'Identity & Access Management', 'Threat Detection Systems', 'SOC Platforms', 'Zero Trust Architecture', 'Data Protection', 'Security Auditing Tools']
+  },
+  {
+    category: 'Industry-Specific Platforms',
+    icon: '🌐',
+    sectors: ['Retail Systems', 'Supply Chain & Logistics', 'Real Estate Technology', 'Travel & Hospitality Systems', 'Media & Entertainment Platforms', 'Telecom Platforms', 'Energy & Utilities Systems', 'Government & Public Sector Systems', 'Agriculture Technology (AgriTech)']
+  },
+  {
+    category: 'Emerging & Advanced Tech',
+    icon: '🚀',
+    sectors: ['Blockchain Applications', 'Web3 Platforms', 'AR/VR Systems', 'Metaverse Applications', 'Robotics Software', 'Autonomous Systems', 'Spatial Computing', 'Quantum-Ready Systems']
   }
 ]
 
@@ -174,11 +157,26 @@ const techStack = [
 
 const navIds = ['home', 'services', 'about', 'clients', 'careers', 'contact']
 
+// ── Replace with your Formspree form ID from https://formspree.io ──
+const FORMSPREE_ID = 'mykovrzl'
+
 export default function App() {
   const [theme, setTheme] = useState('dark')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [toast, setToast] = useState(false)
+  const [toast, setToast] = useState<{ msg: string; ok: boolean } | null>(null)
   const [showTop, setShowTop] = useState(false)
+  const [scrollPct, setScrollPct] = useState(0)
+
+  // Contact form
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [touched, setTouched] = useState<Record<string, boolean>>({})
+
+  // Cookie banner
+  const [cookieOk, setCookieOk] = useState(() => {
+    try { return localStorage.getItem('cookie_ok') === '1' } catch { return false }
+  })
 
   const particles = useMemo(() =>
     Array.from({ length: 22 }, (_, i) => ({
@@ -193,20 +191,94 @@ export default function App() {
   }, [theme])
 
   useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 500)
+    const onScroll = () => {
+      setShowTop(window.scrollY > 500)
+      const doc = document.documentElement
+      const scrolled = doc.scrollTop || document.body.scrollTop
+      const total = doc.scrollHeight - doc.clientHeight
+      setScrollPct(total > 0 ? (scrolled / total) * 100 : 0)
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const navLabels = [t.home, t.services, t.about, t.clients, t.careers, t.contact]
 
-  const handleSend = () => {
-    setToast(true)
-    setTimeout(() => setToast(false), 3500)
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'name':
+        if (!value.trim()) return 'Full name is required'
+        if (value.trim().length < 2) return 'Name must be at least 2 characters'
+        return ''
+      case 'email':
+        if (!value.trim()) return 'Email address is required'
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address'
+        return ''
+      case 'phone':
+        if (!value.trim()) return 'Contact number is required'
+        if (!/^[\+]?[\d\s\-\(\)]{7,15}$/.test(value.trim())) return 'Enter a valid phone number'
+        return ''
+      case 'message':
+        if (!value.trim()) return 'Message is required'
+        if (value.trim().length < 10) return 'Message must be at least 10 characters'
+        return ''
+      default: return ''
+    }
+  }
+
+  const handleField = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setForm(f => ({ ...f, [name]: value }))
+    // Clear error as user types after a failed submit
+    if (errors[name]) setErrors(err => ({ ...err, [name]: validateField(name, value) }))
+  }
+
+  const handleSend = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // Validate all required fields
+    const allTouched = { name: true, email: true, phone: true, message: true }
+    const allErrors = {
+      name:    validateField('name',    form.name),
+      email:   validateField('email',   form.email),
+      phone:   validateField('phone',   form.phone),
+      message: validateField('message', form.message),
+    }
+    setTouched(t => ({ ...t, ...allTouched }))
+    setErrors(err => ({ ...err, ...allErrors }))
+    if (Object.values(allErrors).some(e => e)) return
+    setFormStatus('loading')
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setFormStatus('success')
+        setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+        setErrors({})
+        setTouched({})
+        setToast({ msg: " Message sent! We'll be in touch soon.", ok: true })
+      } else {
+        throw new Error('Submit failed')
+      }
+    } catch {
+      setFormStatus('error')
+      setToast({ msg: ' Something went wrong. Please try again.', ok: false })
+    }
+    setTimeout(() => { setToast(null); setFormStatus('idle') }, 4000)
+  }
+
+  const acceptCookies = () => {
+    try { localStorage.setItem('cookie_ok', '1') } catch {}
+    setCookieOk(true)
   }
 
   return (
     <div className="app">
+      {/* ── SCROLL PROGRESS BAR ─────────────────────────────────── */}
+      <div className="scroll-progress" style={{ width: `${scrollPct}%` }} />
+
       {/* Animated background orbs + grid */}
       <div className="bg-effects">
         <div className="bg-orb orb-1" />
@@ -333,25 +405,13 @@ export default function App() {
         >
           <div className="hero-badge">
             <span className="badge-dot" />
-            Agentic AI · Edge Intelligence · GreenTech
+            Agentic AI · Web & Mobile · Edge IIoT · GreenTech · Vertical AI · Staff Aug
           </div>
           <h1>{t.hero}</h1>
           <p>{t.sub}</p>
           <div className="hero-buttons">
             <button className="btn-primary" onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}>Explore Services <span className="btn-arrow">→</span></button>
             <button className="secondary" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Contact Us</button>
-          </div>
-          <div className="hero-stats">
-            {[
-              { value: '2026', label: 'Founded' },
-              { value: '6', label: 'Core Services' },
-              { value: '6', label: 'Target Sectors' }
-            ].map((s, i) => (
-              <div key={i} className="hero-stat">
-                <span className="stat-value">{s.value}</span>
-                <span className="stat-label">{s.label}</span>
-              </div>
-            ))}
           </div>
         </motion.div>
 
@@ -368,10 +428,10 @@ export default function App() {
             <div className="core-glow" />
             <img src="/logo.png" className="hero-logo" alt="Daanvi" />
           </div>
-          <div className="float-badge badge-ai">🤖 AI Engine</div>
-          <div className="float-badge badge-cloud">☁️ Cloud</div>
-          <div className="float-badge badge-iot">📡 IoT</div>
-          <div className="float-badge badge-sec">🛡️ Secure</div>
+          <div className="float-badge badge-ai"> AI & Data</div>
+          <div className="float-badge badge-cloud"> FinTech</div>
+          <div className="float-badge badge-iot"> EdTech</div>
+          <div className="float-badge badge-sec"> Cybersecurity</div>
         </motion.div>
       </section>
 
@@ -408,8 +468,8 @@ export default function App() {
               whileHover={{ y: -12, scale: 1.02 }}>
               <div className="card-img-wrap">
                 <img src={item.img} className="card-img" alt={item.title} loading="lazy" />
-                <div className="card-icon">{item.icon}</div>
               </div>
+              <div className="card-icon">{item.icon}</div>
               <div className="card-body">
                 <div className="card-tag">{item.tag}</div>
                 <h3>{item.title}</h3>
@@ -460,7 +520,7 @@ export default function App() {
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80&auto=format&fit=crop"
               className="about-img" alt="Daanvi Technologies Team" loading="lazy" />
             <div className="about-img-badge">
-              <span>🚀</span>
+              <span> </span>
               <div>
                 <strong>Early Stage</strong>
                 <small>Founded 2026 · Bangalore</small>
@@ -480,12 +540,14 @@ export default function App() {
               a clear view of the problems we want to solve.
             </p>
             <p className="about-desc">
-              We are going deep on Agentic AI, Industrial IoT, and GreenTech — starting with manufacturing
-              and healthcare in India, where the problems are real, the market is large, and good software
-              is still scarce. If you have a problem in these spaces, we want to talk.
+              We build across six focused areas — Agentic AI, Edge Intelligence & IIoT, GreenTech & ESG,
+              Vertical AI Solutions, Web & Mobile Development, and IT Outsourcing — starting with
+              manufacturing, healthcare, and financial services in India, where the problems are real,
+              the market is large, and good software is still scarce. If you have a problem in these
+              spaces, we want to talk.
             </p>
             <div className="about-features">
-              {['Agentic AI-First', 'Edge-Native', 'Privacy-Preserving', 'Carbon-Intelligent'].map((f, i) => (
+              {['Agentic AI-First', 'Edge-Native', 'Carbon-Intelligent', 'Web & Mobile Ready', 'Vertical AI', 'Staff Augmentation'].map((f, i) => (
                 <div key={i} className="feature-chip">✓ {f}</div>
               ))}
             </div>
@@ -551,21 +613,28 @@ export default function App() {
         <motion.div className="section-header"
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <span className="section-tag">Where We're Building</span>
-          <h2>Sectors We're Building For</h2>
-          <p className="section-sub">We are actively looking for first partners across these sectors — reach out if you see your industry here.</p>
+          <span className="section-tag">Where We Build</span>
+          <h2>Domains & Industries We Serve</h2>
+          <p className="section-sub">From enterprise systems to emerging tech — we bring deep engineering capability across 11 domain categories and 80+ industry verticals.</p>
         </motion.div>
 
-        <div className="sector-strip">
-          {clients.map((c, i) => (
-            <motion.div key={i} className="sector-badge"
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5 }}
-              whileHover={{ y: -4, scale: 1.04 }}>
-              <span className="sector-icon">{c.icon}</span>
-              <div>
-                <span className="sector-name">{c.name}</span>
-                <span className="sector-sub">{c.sub}</span>
+        <div className="sector-groups-grid">
+          {sectorGroups.map((group, i) => (
+            <motion.div key={i} className="sector-group-card"
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: i * 0.06, duration: 0.55 }}
+              whileHover={{ y: -6 }}>
+              <div className="sgc-header">
+                <span className="sgc-icon">{group.icon}</span>
+                <div className="sgc-header-text">
+                  <h3 className="sgc-title">{group.category}</h3>
+                  <span className="sgc-count">{group.sectors.length} domains</span>
+                </div>
+              </div>
+              <div className="sgc-chips">
+                {group.sectors.map((s, j) => (
+                  <span key={j} className="sgc-chip">{s}</span>
+                ))}
               </div>
             </motion.div>
           ))}
@@ -597,21 +666,26 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Join Our Team</span>
           <h2>Careers</h2>
-          <p className="section-sub">Build the future of technology with passionate engineers</p>
+          <p className="section-sub">We're hiring engineers who want to build real AI, IoT, and Cloud systems — not just maintain them</p>
         </motion.div>
         <div className="jobs">
           {[
-            { title: 'Senior AI Engineer', dept: 'Engineering', type: 'Hybrid • Full Time' },
-            { title: 'Frontend React Developer', dept: 'Product', type: 'Remote • Full Time' },
-            { title: 'Cloud Architect', dept: 'Infrastructure', type: 'Hybrid • Full Time' },
-            { title: 'DevOps Engineer', dept: 'Operations', type: 'Remote • Full Time' }
+            { title: 'Senior AI / ML Engineer',          dept: 'Artificial Intelligence', type: 'Hybrid • Full Time',  tag: '🤖 AI' },
+            { title: 'LLM & Agentic Systems Engineer',   dept: 'Artificial Intelligence', type: 'Remote • Full Time',  tag: '🤖 AI' },
+            { title: 'Embedded & IoT Systems Engineer',  dept: 'Edge & IIoT',             type: 'Hybrid • Full Time',  tag: '📡 IoT' },
+            { title: 'Edge AI / TinyML Engineer',        dept: 'Edge & IIoT',             type: 'Hybrid • Full Time',  tag: '📡 IoT' },
+            { title: 'Cloud Solutions Architect',        dept: 'Cloud Infrastructure',    type: 'Remote • Full Time',  tag: '☁️ Cloud' },
+            { title: 'MLOps & Cloud Infrastructure Eng', dept: 'Cloud Infrastructure',    type: 'Remote • Full Time',  tag: '☁️ Cloud' },
           ].map((job, i) => (
             <motion.div key={i} className="job"
               initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6 }}
               whileHover={{ x: 8 }}>
               <div className="job-info">
-                <span className="job-dept">{job.dept}</span>
+                <div className="job-meta">
+                  <span className="job-dept">{job.dept}</span>
+                  <span className="job-tag">{job.tag}</span>
+                </div>
                 <h3>{job.title}</h3>
                 <p>{job.type}</p>
               </div>
@@ -628,20 +702,98 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Get In Touch</span>
           <h2>Contact Us</h2>
-          <p className="section-sub">Ready to transform your business? Let's talk.</p>
+          <p className="section-sub">Tell us about your project and we'll get back within 24 hours.</p>
         </motion.div>
-        <motion.div className="contact"
+
+        <motion.div className="contact-split"
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }}>
-          <div className="contact-row">
-            <input placeholder="Your Name" />
-            <input placeholder="Email Address" />
+
+          {/* ── Left info panel ── */}
+          <div className="contact-info">
+            <div>
+              <h3>Let's Build Something Together</h3>
+              <p>We're an early-stage startup actively looking for our first clients. Reach out — we'd love to hear about your problem.</p>
+            </div>
+            <div className="ci-items">
+              <div className="ci-item">
+                <span className="ci-icon">📧</span>
+                <div>
+                  <span className="ci-label">Email</span>
+                  <span className="ci-value">hello@daanvitech.com</span>
+                </div>
+              </div>
+              <div className="ci-item">
+                <span className="ci-icon">📞</span>
+                <div>
+                  <span className="ci-label">Phone</span>
+                  <span className="ci-value">+91 99641 15577</span>
+                </div>
+              </div>
+              <div className="ci-item">
+                <span className="ci-icon">📍</span>
+                <div>
+                  <span className="ci-label">Location</span>
+                  <span className="ci-value">Bangalore, India</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <input placeholder="Subject" />
-          <textarea placeholder="Tell us about your project..." />
-          <button className="btn-primary contact-btn" onClick={handleSend}>
-            Send Message <span className="btn-arrow">→</span>
-          </button>
+
+          {/* ── Right form ── */}
+          <div className="contact-form-wrap">
+            <form onSubmit={handleSend} noValidate>
+              <div className="contact-row">
+                <div className="field-group">
+                  <label>Full Name <span className="req">*</span></label>
+                  <input name="name" placeholder="John Smith"
+                    value={form.name} onChange={handleField}
+                    className={errors.name ? 'input-error' : ''}
+                    disabled={formStatus === 'loading'} />
+                  {errors.name && <span className="field-error">{errors.name}</span>}
+                </div>
+                <div className="field-group">
+                  <label>Email Address <span className="req">*</span></label>
+                  <input name="email" type="email" placeholder="you@company.com"
+                    value={form.email} onChange={handleField}
+                    className={errors.email ? 'input-error' : ''}
+                    disabled={formStatus === 'loading'} />
+                  {errors.email && <span className="field-error">{errors.email}</span>}
+                </div>
+              </div>
+              <div className="contact-row">
+                <div className="field-group">
+                  <label>Contact Number <span className="req">*</span></label>
+                  <input name="phone" type="tel" placeholder="+91 XXXXX XXXXX"
+                    value={form.phone} onChange={handleField}
+                    className={errors.phone ? 'input-error' : ''}
+                    disabled={formStatus === 'loading'} />
+                  {errors.phone && <span className="field-error">{errors.phone}</span>}
+                </div>
+                <div className="field-group">
+                  <label>Subject</label>
+                  <input name="subject" placeholder="What's this about?"
+                    value={form.subject} onChange={handleField}
+                    disabled={formStatus === 'loading'} />
+                </div>
+              </div>
+              <div className="field-group">
+                <label>Message <span className="req">*</span></label>
+                <textarea name="message" placeholder="Briefly describe what you need help with..."
+                  value={form.message} onChange={handleField}
+                  className={errors.message ? 'input-error' : ''}
+                  disabled={formStatus === 'loading'} />
+                {errors.message && <span className="field-error">{errors.message}</span>}
+              </div>
+              <button
+                className={`btn-primary contact-btn${formStatus === 'loading' ? ' btn-loading' : ''}`}
+                type="submit" disabled={formStatus === 'loading'}>
+                {formStatus === 'loading'
+                  ? <><span className="btn-spinner" /> Sending…</>
+                  : <>Send Message <span className="btn-arrow">→</span></>}
+              </button>
+            </form>
+          </div>
         </motion.div>
       </section>
 
@@ -678,25 +830,25 @@ export default function App() {
             {/* Services col */}
             <div className="footer-col">
               <h4>Services</h4>
+              <a href="#">Web & Mobile Development</a>
+              <a href="#">IT Outsourcing & Staff Augmentation</a>
               <a href="#">Agentic AI Systems</a>
               <a href="#">Edge Intelligence & IIoT</a>
-              <a href="#">GreenTech & ESG</a>
-              <a href="#">Spatial & Digital Twins</a>
-              <a href="#">Quantum-Ready Security</a>
+              <a href="#">GreenTech & ESG Solutions</a>
               <a href="#">Vertical AI Solutions</a>
             </div>
 
             {/* Contact col */}
             <div className="footer-col">
               <h4>Contact</h4>
-              <p className="footer-contact-item">📧 hello@daanvitech.com</p>
-              <p className="footer-contact-item">📍 Bangalore, India</p>
-              <p className="footer-contact-item">📞 +91 99641 15577</p>
+              <p className="footer-contact-item"> hello@daanvitech.com</p>
+              <p className="footer-contact-item"> Bangalore, India</p>
+              <p className="footer-contact-item"> +91 99641 15577</p>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <p>© 2025 Daanvi Technologies Private Limited. All rights reserved.</p>
+            <p>© 2026 Daanvi Technologies Private Limited. All rights reserved.</p>
             <div className="footer-legal">
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of Service</a>
@@ -726,12 +878,40 @@ export default function App() {
       {/* ── TOAST ───────────────────────────────────────────────── */}
       <AnimatePresence>
         {toast && (
-          <motion.div className="toast"
+          <motion.div className={`toast${toast.ok ? '' : ' toast-error'}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.35 }}>
-            ✅ Message sent! We'll be in touch soon.
+            {toast.msg}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── COOKIE BANNER ───────────────────────────────────────── */}
+      <AnimatePresence>
+        {!cookieOk && (
+          <motion.div className="cookie-banner"
+            initial={{ y: 80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 80, opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}>
+            <div className="cookie-text">
+              <span className="cookie-icon"> </span>
+              <p>
+                We use cookies to improve your experience and analyse site performance.
+                By continuing to browse you agree to our{' '}
+                <a href="#" className="cookie-link">Privacy Policy</a>.
+              </p>
+            </div>
+            <div className="cookie-actions">
+              <button className="cookie-decline" onClick={() => setCookieOk(true)}>
+                Decline
+              </button>
+              <button className="cookie-accept" onClick={acceptCookies}>
+                Accept All
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
