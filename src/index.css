@@ -1957,8 +1957,12 @@ body.light .mobile-link    { color: rgba(255,255,255,0.9); border-bottom-color: 
   .hero-badge      { font-size: 11px; padding: 7px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
   .hero-content h1 { font-size: clamp(30px, 8.5vw, 44px); }
   .hero-content p  { font-size: 15px; line-height: 1.75; }
-  .hero-visual     { max-width: 220px; }
-  .float-badge     { display: none; }
+  .hero-visual     { max-width: 300px; }
+  .float-badge     { font-size: 9px; padding: 4px 8px; border-radius: 8px; white-space: nowrap; }
+  .badge-ai        { top: -3%; left: -2%; }
+  .badge-cloud     { top: -3%; right: -2%; }
+  .badge-iot       { bottom: 0%; left: -2%; }
+  .badge-sec       { bottom: 0%; right: -2%; }
   .btn-primary, .secondary, .cta-secondary { padding: 14px 22px; font-size: 14px; }
 
   .stats-bar    { padding: 36px 0; }
@@ -1988,7 +1992,7 @@ body.light .mobile-link    { color: rgba(255,255,255,0.9); border-bottom-color: 
   .footer       { padding: 56px 0 0; }
 
   .scroll-top-btn { bottom: 20px; right: 16px; width: 40px; height: 40px; font-size: 16px; }
-  .toast          { white-space: normal; text-align: center; width: 90%; font-size: 13px; }
+  .toast          { white-space: normal; text-align: center; width: min(90%, 340px); font-size: 14px; padding: 16px 20px; bottom: 80px; border-radius: 16px; }
   .cookie-banner  { padding: 16px; gap: 12px; }
   .cookie-actions { flex-direction: row; }
 
@@ -2013,6 +2017,8 @@ body.light .mobile-link    { color: rgba(255,255,255,0.9); border-bottom-color: 
   .stat-num          { font-size: 28px; }
   .header-inner      { padding: 0 16px; }
   .hero-badge        { font-size: 10px; }
+  .hero-visual       { max-width: 260px; }
+  .float-badge       { font-size: 8px; padding: 3px 6px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -2173,3 +2179,5 @@ body.light .mobile-link    { color: rgba(255,255,255,0.9); border-bottom-color: 
 .faq-item[open] .faq-q { color: #22d3ee; }
 .faq-item[open] .faq-q::after { transform: rotate(45deg); }
 .faq-a { padding: 0 1.5rem 1.25rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; border-top: 1px solid var(--card-border); }
+
+.btn-success{background:linear-gradient(135deg,#059669,#10b981)!important;border-color:rgba(16,185,129,.5)!important;cursor:default}.btn-success:hover{transform:none!important;box-shadow:0 0 24px rgba(16,185,129,.4)!important}

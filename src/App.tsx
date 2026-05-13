@@ -786,10 +786,12 @@ export default function App() {
                 {errors.message && <span className="field-error">{errors.message}</span>}
               </div>
               <button
-                className={`btn-primary contact-btn${formStatus === 'loading' ? ' btn-loading' : ''}`}
-                type="submit" disabled={formStatus === 'loading'}>
+                className={`btn-primary contact-btn${formStatus === 'loading' ? ' btn-loading' : formStatus === 'success' ? ' btn-success' : ''}`}
+                type="submit" disabled={formStatus === 'loading' || formStatus === 'success'}>
                 {formStatus === 'loading'
                   ? <><span className="btn-spinner" /> Sending…</>
+                  : formStatus === 'success'
+                  ? <>✅ Message Sent!</>
                   : <>Send Message <span className="btn-arrow">→</span></>}
               </button>
             </form>
