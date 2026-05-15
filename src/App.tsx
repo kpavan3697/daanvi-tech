@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
 import './index.css'
 
@@ -9,8 +9,8 @@ const t = {
   clients: 'Sectors',
   careers: 'Careers',
   contact: 'Contact',
-  hero: 'Engineering the Enterprise Technology of the Next Decade',
-  sub: 'Daanvi Technologies builds across Agentic AI, Edge Intelligence & IIoT, GreenTech, Vertical AI, Web & Mobile, and IT Staffing — delivering the intelligent systems and engineering teams that will define enterprise technology through 2035.'
+  hero: 'Engineering the Enterprise Technology of the AI Era',
+  sub: 'Daanvi Technologies builds across Agentic AI, Edge Intelligence & IIoT, GreenTech, Vertical AI, Web & Mobile, and IT Staffing — delivering the intelligent systems and engineering teams that define enterprise technology in the AI era.'
 }
 
 const services = [
@@ -69,56 +69,67 @@ const sectorGroups = [
   {
     category: 'Enterprise & Business Systems',
     icon: '🏢',
+    desc: 'The operational backbone of modern organizations — ERPs, CRMs, HRMS, and workflow automation engineered to scale across teams and geographies.',
     sectors: ['ERP Systems', 'CRM Platforms', 'HRMS Solutions', 'Business Automation', 'Workflow Automation', 'Enterprise Portals', 'Accounting Systems', 'Document Management']
   },
   {
     category: 'Banking & Financial Systems',
     icon: '🏦',
+    desc: 'Core banking, payments, lending, and risk platforms built for regulated environments — secure, auditable, and ready for real transaction volume.',
     sectors: ['Core Banking Systems', 'FinTech Platforms', 'Digital Payments', 'Insurance Technology', 'Trading Platforms', 'Risk & Compliance Systems', 'Lending Platforms', 'Wealth Management Systems']
   },
   {
     category: 'AI & Data Engineering',
     icon: '🤖',
+    desc: 'Generative AI, agentic systems, and data pipelines that turn raw signals into intelligent, production-grade decisions across the enterprise.',
     sectors: ['Generative AI Applications', 'Agentic AI Systems', 'Machine Learning Pipelines', 'Deep Learning Systems', 'Computer Vision', 'Natural Language Processing', 'Predictive Analytics', 'Recommendation Engines', 'Data Engineering', 'Business Intelligence']
   },
   {
     category: 'Cloud, Storage & Infrastructure',
     icon: '☁️',
+    desc: 'Cloud-native architectures, distributed systems, and high-performance storage — engineered for reliability, elasticity, and cost efficiency at scale.',
     sectors: ['Cloud Computing Platforms', 'Cloud Migration', 'Distributed Systems', 'Data Lakes', 'Data Warehousing', 'Big Data Platforms', 'High-Performance Storage Systems', 'Backup & Disaster Recovery', 'DevOps Automation', 'Kubernetes & Microservices']
   },
   {
     category: 'Web, Mobile & SaaS',
     icon: '💻',
+    desc: 'Modern web, mobile, and SaaS products built end-to-end — from frontend craft to backend APIs and everything users actually feel.',
     sectors: ['Web Applications', 'Mobile Applications', 'Progressive Web Apps', 'SaaS Platforms', 'E-Commerce Systems', 'Frontend Engineering', 'Backend Engineering', 'API Development', 'Cross-Platform Apps']
   },
   {
     category: 'Education & Knowledge Systems',
     icon: '🎓',
+    desc: 'EdTech platforms, learning management, and assessment systems designed for measurable outcomes and engaged learners across all formats.',
     sectors: ['EdTech Platforms', 'Learning Management Systems', 'Online Learning Platforms', 'Virtual Classrooms', 'Assessment Systems', 'Skill Development Platforms', 'Corporate Training Systems']
   },
   {
     category: 'Healthcare & Life Sciences',
     icon: '🏥',
+    desc: 'Hospital systems, telemedicine, diagnostics, and EHR platforms built with clinical precision and the compliance posture healthcare demands.',
     sectors: ['Hospital Management Systems', 'Telemedicine Platforms', 'Medical Diagnostics Software', 'Electronic Health Records (EHR)', 'Pharmaceutical Systems', 'Biotech Platforms', 'Health Monitoring Systems']
   },
   {
     category: 'Industrial & IoT Systems',
     icon: '🏭',
+    desc: 'Industrial IoT, edge computing, and digital twins that bring real-time intelligence to the factory floor, field, and supply chain.',
     sectors: ['Industrial IoT', 'Smart Manufacturing Systems', 'Edge Computing', 'Digital Twins', 'Embedded Systems', 'Real-Time Monitoring', 'Automation Platforms', 'Sensor Data Systems']
   },
   {
     category: 'Cybersecurity & Compliance',
     icon: '🔐',
+    desc: 'Application security, identity, threat detection, and zero-trust architectures aligned to the compliance frameworks your auditors actually care about.',
     sectors: ['Application Security', 'Cloud Security', 'Identity & Access Management', 'Threat Detection Systems', 'SOC Platforms', 'Zero Trust Architecture', 'Data Protection', 'Security Auditing Tools']
   },
   {
     category: 'Industry-Specific Platforms',
     icon: '🌐',
+    desc: 'Retail, logistics, real estate, travel, media, telecom, and public-sector platforms tailored to the workflows each industry actually runs on.',
     sectors: ['Retail Systems', 'Supply Chain & Logistics', 'Real Estate Technology', 'Travel & Hospitality Systems', 'Media & Entertainment Platforms', 'Telecom Platforms', 'Energy & Utilities Systems', 'Government & Public Sector Systems', 'Agriculture Technology (AgriTech)']
   },
   {
     category: 'Emerging & Advanced Tech',
     icon: '🚀',
+    desc: 'Blockchain, Web3, AR/VR, robotics, and spatial computing — frontier technology built with the same engineering rigor as production systems.',
     sectors: ['Blockchain Applications', 'Web3 Platforms', 'AR/VR Systems', 'Metaverse Applications', 'Robotics Software', 'Autonomous Systems', 'Spatial Computing', 'Quantum-Ready Systems']
   }
 ]
@@ -166,9 +177,10 @@ export default function App() {
   const [toast, setToast] = useState<{ msg: string; ok: boolean } | null>(null)
   const [showTop, setShowTop] = useState(false)
   const [scrollPct, setScrollPct] = useState(0)
+  const [activeSection, setActiveSection] = useState<string>('home')
 
   // Contact form
-  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', _gotcha: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -200,6 +212,27 @@ export default function App() {
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Scroll-spy: track which section is currently in view
+  useEffect(() => {
+    const sections = navIds
+      .map(id => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null)
+    if (sections.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Pick the entry with the largest intersection ratio that's currently intersecting
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (visible[0]) setActiveSection(visible[0].target.id)
+      },
+      { rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
   }, [])
 
   const navLabels = [t.home, t.services, t.about, t.clients, t.careers, t.contact]
@@ -235,6 +268,12 @@ export default function App() {
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault()
+    // Honeypot: if a bot filled the hidden field, silently pretend success and bail.
+    if (form._gotcha) {
+      setFormStatus('success')
+      setForm({ name: '', email: '', phone: '', subject: '', message: '', _gotcha: '' })
+      return
+    }
     // Validate all required fields
     const allTouched = { name: true, email: true, phone: true, message: true }
     const allErrors = {
@@ -255,7 +294,7 @@ export default function App() {
       })
       if (res.ok) {
         setFormStatus('success')
-        setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+        setForm({ name: '', email: '', phone: '', subject: '', message: '', _gotcha: '' })
         setErrors({})
         setTouched({})
       } else {
@@ -264,8 +303,8 @@ export default function App() {
     } catch {
       setFormStatus('error')
       setToast({ msg: ' Something went wrong. Please try again.', ok: false })
+      setTimeout(() => setToast(null), 4000)
     }
-    setTimeout(() => { setToast(null); setFormStatus('idle') }, 4000)
   }
 
   const acceptCookies = () => {
@@ -274,6 +313,7 @@ export default function App() {
   }
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="app">
       {/* ── SCROLL PROGRESS BAR ─────────────────────────────────── */}
       <div className="scroll-progress" style={{ width: `${scrollPct}%` }} />
@@ -308,7 +348,8 @@ export default function App() {
               <motion.a
                 key={i}
                 href={`#${navIds[i]}`}
-                className="mobile-link"
+                className={`mobile-link${activeSection === navIds[i] ? ' active' : ''}`}
+                aria-current={activeSection === navIds[i] ? 'page' : undefined}
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -330,12 +371,14 @@ export default function App() {
             transition={{ duration: 0.6 }}
             className="logo-wrap"
           >
-            <img src="/logo.png" className="logo" alt="Daanvi Technologies" />
+            <img src="/logo.png" className="logo" alt="Daanvi Technologies" width="1024" height="301" />
           </motion.div>
 
           <nav>
             {navLabels.map((label, i) => (
-              <motion.a key={i} href={`#${navIds[i]}`} className="nav-link"
+              <motion.a key={i} href={`#${navIds[i]}`}
+                className={`nav-link${activeSection === navIds[i] ? ' active' : ''}`}
+                aria-current={activeSection === navIds[i] ? 'page' : undefined}
                 initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07, duration: 0.45 }}>
@@ -402,10 +445,6 @@ export default function App() {
           transition={{ duration: 1, ease: 'easeOut' }}
           className="hero-content"
         >
-          <div className="hero-badge">
-            <span className="badge-dot" />
-            Agentic AI · Web & Mobile · Edge IIoT · GreenTech · Vertical AI · Staff Aug
-          </div>
           <h1>{t.hero}</h1>
           <p>{t.sub}</p>
           <div className="hero-buttons">
@@ -425,7 +464,7 @@ export default function App() {
           <div className="orbit orbit-ring-3"><div className="orbit-dot dot-purple" /></div>
           <div className="hero-core">
             <div className="core-glow" />
-            <img src="/logo.png" className="hero-logo" alt="Daanvi" />
+            <img src="/logo.png" className="hero-logo" alt="Daanvi" width="1024" height="301" />
           </div>
           <div className="float-badge badge-ai"> AI & Data</div>
           <div className="float-badge badge-cloud"> FinTech</div>
@@ -466,7 +505,7 @@ export default function App() {
               viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.65 }}
               whileHover={{ y: -12, scale: 1.02 }}>
               <div className="card-img-wrap">
-                <img src={item.img} className="card-img" alt={item.title} loading="lazy" />
+                <img src={item.img} className="card-img" alt={item.title} loading="lazy" width="500" height="333" />
               </div>
               <div className="card-icon">{item.icon}</div>
               <div className="card-body">
@@ -517,7 +556,8 @@ export default function App() {
             viewport={{ once: true }} transition={{ duration: 0.9 }}>
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80&auto=format&fit=crop"
-              className="about-img" alt="Daanvi Technologies Team" loading="lazy" />
+              className="about-img" alt="Daanvi Technologies Team" loading="lazy"
+              width="700" height="467" />
             <div className="about-img-badge">
               <span> </span>
               <div>
@@ -578,34 +618,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── TECH STACK MARQUEE ─────────────────────────────────── */}
-      <section className="tech-section">
-        <div className="container">
-          <motion.div className="section-header"
-            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.7 }}>
-            <span className="section-tag">Built With</span>
-            <h2>Our Technology Stack</h2>
-            <p className="section-sub">Industry-leading tools powering every solution we deliver</p>
-          </motion.div>
-        </div>
-
-        <div className="marquee-wrapper">
-          <div className="marquee-fade-left" />
-          <div className="marquee-fade-right" />
-          <div className="marquee-track">
-            {[...techStack, ...techStack].map((name, i) => (
-              <div key={i} className="tech-pill">{name}</div>
-            ))}
-          </div>
-          <div className="marquee-track reverse">
-            {[...techStack.slice(9), ...techStack.slice(0, 9),
-              ...techStack.slice(9), ...techStack.slice(0, 9)].map((name, i) => (
-              <div key={i} className="tech-pill">{name}</div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* ── SECTORS ────────────────────────────────────────────── */}
       <section id="clients" className="section container">
@@ -630,10 +643,13 @@ export default function App() {
                   <span className="sgc-count">{group.sectors.length} domains</span>
                 </div>
               </div>
-              <div className="sgc-chips">
-                {group.sectors.map((s, j) => (
-                  <span key={j} className="sgc-chip">{s}</span>
-                ))}
+              <div className="sgc-body">
+                <p className="sgc-desc">{group.desc}</p>
+                <div className="sgc-chips">
+                  {group.sectors.map((s, j) => (
+                    <span key={j} className="sgc-chip">{s}</span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -688,7 +704,7 @@ export default function App() {
                 <h3>{job.title}</h3>
                 <p>{job.type}</p>
               </div>
-              <button className="btn-apply">Apply Now →</button>
+              <button className="btn-apply" disabled>Apply Now →</button>
             </motion.div>
           ))}
         </div>
@@ -742,6 +758,33 @@ export default function App() {
           {/* ── Right form ── */}
           <div className="contact-form-wrap">
             <form onSubmit={handleSend} noValidate>
+              {/* Honeypot — invisible to humans, irresistible to bots */}
+              <input
+                type="text" name="_gotcha"
+                tabIndex={-1} autoComplete="off"
+                value={form._gotcha} onChange={handleField}
+                className="honeypot" aria-hidden="true"
+              />
+
+              <AnimatePresence>
+                {formStatus === 'success' && (
+                  <motion.div
+                    className="form-status form-status-success" role="status"
+                    initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <strong>Thanks — your message is on its way.</strong>
+                    <span>We'll reply within 24 hours.</span>
+                  </motion.div>
+                )}
+                {formStatus === 'error' && (
+                  <motion.div
+                    className="form-status form-status-error" role="alert"
+                    initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <strong>We couldn't send your message.</strong>
+                    <span>Please try again, or email us at hello@daanvitech.com.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="contact-row">
                 <div className="field-group">
                   <label>Full Name <span className="req">*</span></label>
@@ -804,16 +847,16 @@ export default function App() {
           <div className="footer-grid">
             {/* Brand col */}
             <div className="footer-col brand-col">
-              <img src="/logo.png" className="logo" alt="Daanvi" />
-              <p className="footer-tagline">Engineering the future, one intelligent solution at a time.</p>
+              <img src="/logo.png" className="logo" alt="Daanvi" width="1024" height="301" />
+              <p className="footer-tagline">Building the Next Generation of Intelligent Solutions.</p>
               <div className="social-links">
-                <a href="#" className="social-btn" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/company/daanvi-technologies-private-limited/about/?viewAsMember=true" className="social-btn" aria-label="LinkedIn">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                <a href="#" className="social-btn" aria-label="Twitter / X">
+                <a href="https://x.com/Daanvitech" className="social-btn" aria-label="Twitter / X">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="#" className="social-btn" aria-label="GitHub">
+                <a href="https://github.com/daanvitech" className="social-btn" aria-label="GitHub">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
                 </a>
               </div>
@@ -851,9 +894,8 @@ export default function App() {
           <div className="footer-bottom">
             <p>© 2026 Daanvi Technologies Private Limited. All rights reserved.</p>
             <div className="footer-legal">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Sitemap</a>
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms of Service</a>
             </div>
           </div>
         </div>
@@ -902,7 +944,7 @@ export default function App() {
               <p>
                 We use cookies to improve your experience and analyse site performance.
                 By continuing to browse you agree to our{' '}
-                <a href="#" className="cookie-link">Privacy Policy</a>.
+                <a href="/privacy" className="cookie-link">Privacy Policy</a>.
               </p>
             </div>
             <div className="cookie-actions">
@@ -917,5 +959,6 @@ export default function App() {
         )}
       </AnimatePresence>
     </div>
+    </MotionConfig>
   )
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,13 +7,22 @@
     <!-- Primary meta -->
     <title>Daanvi Technologies — Engineering Enterprise Technology</title>
     <meta name="description" content="Daanvi Technologies builds Agentic AI, Edge Intelligence, GreenTech, Web & Mobile, and Vertical AI solutions. Early-stage startup based in Bangalore, India." />
+    <link rel="canonical" href="https://daanvitech.com/" />
+    <meta name="google-site-verification" content="GckQwinojCZC9YY9g4VM_bliPR4Q7hTffxBww0qdst4" />
+
+    <!-- Preconnect + load Inter from Google Fonts (non-blocking; faster than @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" />
 
     <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+    <!-- TODO: replace logo.png with a proper 1200x630 og-cover.png for richer social previews -->
     <meta property="og:type"        content="website" />
     <meta property="og:url"         content="https://daanvitech.com/" />
     <meta property="og:title"       content="Daanvi Technologies — Engineering Enterprise Technology" />
     <meta property="og:description" content="We build Agentic AI systems, Edge Intelligence, GreenTech platforms, and full-stack Web & Mobile solutions. Bangalore-based startup open to first-client partnerships." />
-    <meta property="og:image"       content="https://daanvitech.com/og-cover.png" />
+    <meta property="og:image"       content="https://daanvitech.com/logo.png" />
     <meta property="og:site_name"   content="Daanvi Technologies" />
     <meta property="og:locale"      content="en_IN" />
 
@@ -21,20 +30,72 @@
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content="Daanvi Technologies — Engineering Enterprise Technology" />
     <meta name="twitter:description" content="Agentic AI · Edge Intelligence · GreenTech · Web & Mobile. Bangalore startup seeking first-client partnerships." />
-    <meta name="twitter:image"       content="https://daanvitech.com/og-cover.png" />
+    <meta name="twitter:image"       content="https://daanvitech.com/logo.png" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+
+    <!-- Structured data: Organization + WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://daanvitech.com/#organization",
+          "name": "Daanvi Technologies",
+          "legalName": "Daanvi Technologies Private Limited",
+          "url": "https://daanvitech.com/",
+          "logo": "https://daanvitech.com/logo.png",
+          "image": "https://daanvitech.com/logo.png",
+          "description": "Daanvi Technologies builds Agentic AI, Edge Intelligence & IIoT, GreenTech, Vertical AI, Web & Mobile, and IT Staffing solutions for enterprises in the AI era.",
+          "foundingDate": "2026",
+          "email": "hello@daanvitech.com",
+          "telephone": "+91-99641-15577",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bangalore",
+            "addressRegion": "Karnataka",
+            "addressCountry": "IN"
+          },
+          "areaServed": "Worldwide",
+          "knowsAbout": [
+            "Agentic AI",
+            "Edge Intelligence",
+            "Industrial IoT",
+            "GreenTech",
+            "Vertical AI",
+            "Web Development",
+            "Mobile Development",
+            "IT Staff Augmentation"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://daanvitech.com/#website",
+          "url": "https://daanvitech.com/",
+          "name": "Daanvi Technologies",
+          "publisher": { "@id": "https://daanvitech.com/#organization" },
+          "inLanguage": "en-IN"
+        }
+      ]
+    }
+    </script>
 
     <!-- Page-loader styles inline so they render before React hydrates -->
     <style>
+      html, body { margin: 0; padding: 0; overflow-x: hidden; }
+      body { width: 100%; }
       #page-loader {
         position: fixed; inset: 0; z-index: 9999;
+        width: 100vw; min-height: 100vh;
         background: #050816;
         display: flex; flex-direction: column;
         align-items: center; justify-content: center;
+        padding: 0;
         transition: opacity 0.65s ease, visibility 0.65s ease;
       }
+      .ldr-scene { width: 100%; max-width: 100%; }
       #page-loader.hidden { opacity: 0; visibility: hidden; }
       .ldr-scene { display: flex; flex-direction: column; align-items: center; gap: 28px; }
       .ldr-orbit-wrap { position: relative; width: 140px; height: 140px; display: flex; align-items: center; justify-content: center; }
@@ -72,7 +133,7 @@
           <div class="ldr-ring ldr-ring-1"></div>
           <div class="ldr-ring ldr-ring-2"></div>
           <div class="ldr-logo-core">
-            <img src="./logo.png" alt="Daanvi Technologies" />
+            <img src="/logo.png" alt="Daanvi Technologies" />
           </div>
         </div>
         <div class="ldr-text">
