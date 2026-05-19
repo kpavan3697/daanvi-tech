@@ -10,24 +10,10 @@ const t = {
   careers: 'Careers',
   contact: 'Contact',
   hero: 'Engineering the Enterprise Technology of the AI Era',
-  sub: 'Daanvi Technologies builds across Agentic AI, Edge Intelligence & IIoT, GreenTech, Vertical AI, Web & Mobile, and IT Staffing — delivering the intelligent systems and engineering teams that define enterprise technology in the AI era.'
+  sub: 'Daanvi Technologies builds across Agentic AI, Vertical AI, Web & Mobile, IoT, and IT Outsourcing — delivering the intelligent systems and engineering teams that define enterprise technology in the AI era.'
 }
 
 const services = [
-  {
-    title: 'Web & Mobile Development',
-    icon: '💻',
-    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80&auto=format&fit=crop',
-    desc: 'Custom web applications, mobile apps, and SaaS products built with modern stacks — from MVP to production-ready at startup speed.',
-    tag: 'Ship Fast'
-  },
-  {
-    title: 'IT Outsourcing & Staff Augmentation',
-    icon: '🤝',
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop',
-    desc: 'Dedicated engineering teams, staff augmentation, and offshore development — skilled talent that plugs into your workflow from day one.',
-    tag: 'Scale Teams'
-  },
   {
     title: 'Agentic AI Systems',
     icon: '🤖',
@@ -36,31 +22,38 @@ const services = [
     tag: 'AI-Native'
   },
   {
-    title: 'Edge Intelligence & IIoT',
-    icon: '📡',
-    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80&auto=format&fit=crop',
-    desc: 'AI that runs on-device at the factory floor, field, or hospital — real-time decisions with zero cloud dependency or latency.',
-    tag: 'Edge-Native'
-  },
-  {
-    title: 'GreenTech & ESG Solutions',
-    icon: '🌱',
-    img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=80&auto=format&fit=crop',
-    desc: 'Carbon tracking, energy optimisation, and automated ESG compliance reporting — turning sustainability mandates into measurable advantage.',
-    tag: 'Sustainability'
-  },
-  {
     title: 'Vertical AI Solutions',
     icon: '🎯',
     img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80&auto=format&fit=crop',
-    desc: 'Deep-domain AI for Healthcare diagnostics, Precision Agriculture, and Smart Manufacturing — purpose-built for high-impact industries.',
+    desc: 'Deep-domain AI for Healthcare diagnostics, Financial Services, and Smart Manufacturing — purpose-built for high-impact industries.',
     tag: 'Industry-Specific'
+  },
+  {
+    title: 'Web & Mobile Development',
+    icon: '💻',
+    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80&auto=format&fit=crop',
+    desc: 'Custom web applications, mobile apps, and SaaS products built with modern stacks — from MVP to production-ready at startup speed.',
+    tag: 'Ship Fast'
+  },
+  {
+    title: 'IoT & Connected Systems',
+    icon: '📡',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80&auto=format&fit=crop',
+    desc: 'IoT platforms, embedded firmware, and connected device systems — real-time telemetry, device management, and field-grade reliability for industrial and consumer deployments.',
+    tag: 'Connected'
+  },
+  {
+    title: 'IT Outsourcing',
+    icon: '🤝',
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop',
+    desc: 'Dedicated engineering teams and offshore development pods — skilled talent that plugs into your workflow from day one to deliver end-to-end.',
+    tag: 'Scale Teams'
   }
 ]
 
 const stats = [
   { value: '2026', label: 'Year Founded' },
-  { value: '6', label: 'Core Services' },
+  { value: '5', label: 'Core Services' },
   { value: '11', label: 'Domain Categories' },
   { value: '80+', label: 'Industry Domains' }
 ]
@@ -109,10 +102,10 @@ const sectorGroups = [
     sectors: ['Hospital Management Systems', 'Telemedicine Platforms', 'Medical Diagnostics Software', 'Electronic Health Records (EHR)', 'Pharmaceutical Systems', 'Biotech Platforms', 'Health Monitoring Systems']
   },
   {
-    category: 'Industrial & IoT Systems',
-    icon: '🏭',
-    desc: 'Industrial IoT, edge computing, and digital twins that bring real-time intelligence to the factory floor, field, and supply chain.',
-    sectors: ['Industrial IoT', 'Smart Manufacturing Systems', 'Edge Computing', 'Digital Twins', 'Embedded Systems', 'Real-Time Monitoring', 'Automation Platforms', 'Sensor Data Systems']
+    category: 'IoT & Connected Systems',
+    icon: '📡',
+    desc: 'IoT platforms, embedded firmware, and connected device systems — real-time telemetry, device fleets, and field-grade reliability for industrial and consumer deployments.',
+    sectors: ['Industrial IoT', 'Consumer IoT', 'Embedded Systems', 'IoT Platforms', 'Device Management', 'Real-Time Monitoring', 'Sensor Networks', 'Smart Manufacturing Systems']
   },
   {
     category: 'Cybersecurity & Compliance',
@@ -169,8 +162,7 @@ const techStack = [
 const navIds = ['home', 'services', 'about', 'clients', 'careers', 'contact']
 
 // ── Replace with your Formspree form ID from https://formspree.io ──
-const FORMSPREE_ID = 'mykovrzl'
-
+const FORMSPREE_ID = 'mvzyzpey'
 export default function App() {
   const [theme, setTheme] = useState('dark')
   const [menuOpen, setMenuOpen] = useState(false)
@@ -180,7 +172,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<string>('home')
 
   // Contact form
-  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '', _gotcha: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
@@ -247,10 +239,13 @@ export default function App() {
         if (!value.trim()) return 'Email address is required'
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Enter a valid email address'
         return ''
-      case 'phone':
+      case 'phone': {
         if (!value.trim()) return 'Contact number is required'
-        if (!/^[\+]?[\d\s\-\(\)]{7,15}$/.test(value.trim())) return 'Enter a valid phone number'
+        const digits = (value.match(/\d/g) || []).length
+        if (digits < 7 || digits > 15) return 'Enter a valid phone number'
+        if (!/^[+\d\s\-().]+$/.test(value.trim())) return 'Enter a valid phone number'
         return ''
+      }
       case 'message':
         if (!value.trim()) return 'Message is required'
         if (value.trim().length < 10) return 'Message must be at least 10 characters'
@@ -268,12 +263,6 @@ export default function App() {
 
   const handleSend = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Honeypot: if a bot filled the hidden field, silently pretend success and bail.
-    if (form._gotcha) {
-      setFormStatus('success')
-      setForm({ name: '', email: '', phone: '', subject: '', message: '', _gotcha: '' })
-      return
-    }
     // Validate all required fields
     const allTouched = { name: true, email: true, phone: true, message: true }
     const allErrors = {
@@ -294,7 +283,7 @@ export default function App() {
       })
       if (res.ok) {
         setFormStatus('success')
-        setForm({ name: '', email: '', phone: '', subject: '', message: '', _gotcha: '' })
+        setForm({ name: '', email: '', phone: '', subject: '', message: '' })
         setErrors({})
         setTouched({})
       } else {
@@ -467,9 +456,9 @@ export default function App() {
             <img src="/logo.png" className="hero-logo" alt="Daanvi" width="1024" height="301" />
           </div>
           <div className="float-badge badge-ai"> AI & Data</div>
-          <div className="float-badge badge-cloud"> FinTech</div>
-          <div className="float-badge badge-iot"> EdTech</div>
-          <div className="float-badge badge-sec"> Cybersecurity</div>
+          <div className="float-badge badge-cloud"> Cybersecurity</div>
+          <div className="float-badge badge-iot"> IoT</div>
+          <div className="float-badge badge-sec"> Web & Mobile</div>
         </motion.div>
       </section>
 
@@ -496,7 +485,7 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">What We Build</span>
           <h2>Our Services</h2>
-          <p className="section-sub">Six focused areas where our team has genuine technical depth and a clear point of view</p>
+          <p className="section-sub">Five focused areas where our team has genuine technical depth and a clear point of view</p>
         </motion.div>
         <div className="grid">
           {services.map((item, i) => (
@@ -579,14 +568,14 @@ export default function App() {
               a clear view of the problems we want to solve.
             </p>
             <p className="about-desc">
-              We build across six focused areas — Agentic AI, Edge Intelligence & IIoT, GreenTech & ESG,
-              Vertical AI Solutions, Web & Mobile Development, and IT Outsourcing — starting with
-              manufacturing, healthcare, and financial services in India, where the problems are real,
-              the market is large, and good software is still scarce. If you have a problem in these
-              spaces, we want to talk.
+              We build across five focused areas — Agentic AI Systems, Vertical AI Solutions,
+              Web & Mobile Development, IoT & Connected Systems, and IT Outsourcing — starting
+              with healthcare, financial services, and manufacturing in India, where the problems
+              are real, the market is large, and good software is still scarce. If you have a
+              problem in these spaces, we want to talk.
             </p>
             <div className="about-features">
-              {['Agentic AI-First', 'Edge-Native', 'Carbon-Intelligent', 'Web & Mobile Ready', 'Vertical AI', 'Staff Augmentation'].map((f, i) => (
+              {['Agentic AI-First', 'Vertical AI', 'Web & Mobile Ready', 'IoT-Enabled', 'Outsourcing'].map((f, i) => (
                 <div key={i} className="feature-chip">✓ {f}</div>
               ))}
             </div>
@@ -618,7 +607,6 @@ export default function App() {
         </div>
       </section>
 
-      
 
       {/* ── SECTORS ────────────────────────────────────────────── */}
       <section id="clients" className="section container">
@@ -626,8 +614,8 @@ export default function App() {
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Where We Build</span>
-          <h2>Domains & Industries We Serve</h2>
-          <p className="section-sub">From enterprise systems to emerging tech — we bring deep engineering capability across 11 domain categories and 80+ industry verticals.</p>
+          <h2>Domains & Industries We Build For</h2>
+          <p className="section-sub">From enterprise systems to emerging tech — we bring deep engineering capability across 11 domain categories and 80+ industry verticals, anchored in our five focus areas: Agentic AI, Vertical AI, Web & Mobile, IoT, and IT Outsourcing.</p>
         </motion.div>
 
         <div className="sector-groups-grid">
@@ -681,16 +669,17 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Join Our Team</span>
           <h2>Careers</h2>
-          <p className="section-sub">We're hiring engineers who want to build real AI, IoT, and Cloud systems — not just maintain them</p>
+          <p className="section-sub">We're hiring engineers who want to build real Agentic AI, Vertical AI, Web & Mobile, and IoT systems — and lead client delivery pods</p>
         </motion.div>
         <div className="jobs">
           {[
-            { title: 'Senior AI / ML Engineer',          dept: 'Artificial Intelligence', type: 'Hybrid • Full Time',  tag: '🤖 AI' },
-            { title: 'LLM & Agentic Systems Engineer',   dept: 'Artificial Intelligence', type: 'Remote • Full Time',  tag: '🤖 AI' },
-            { title: 'Embedded & IoT Systems Engineer',  dept: 'Edge & IIoT',             type: 'Hybrid • Full Time',  tag: '📡 IoT' },
-            { title: 'Edge AI / TinyML Engineer',        dept: 'Edge & IIoT',             type: 'Hybrid • Full Time',  tag: '📡 IoT' },
-            { title: 'Cloud Solutions Architect',        dept: 'Cloud Infrastructure',    type: 'Remote • Full Time',  tag: '☁️ Cloud' },
-            { title: 'MLOps & Cloud Infrastructure Eng', dept: 'Cloud Infrastructure',    type: 'Remote • Full Time',  tag: '☁️ Cloud' },
+            { title: 'Senior AI / ML Engineer',              dept: 'Agentic AI',      type: 'Hybrid • Full Time', tag: '🤖 AI' },
+            { title: 'LLM & Agentic Systems Engineer',       dept: 'Agentic AI',      type: 'Remote • Full Time', tag: '🤖 AI' },
+            { title: 'Vertical AI Solutions Engineer',       dept: 'Vertical AI',     type: 'Hybrid • Full Time', tag: '🎯 Vertical AI' },
+            { title: 'Senior Full-Stack Engineer',           dept: 'Web & Mobile',    type: 'Remote • Full Time', tag: '💻 Web & Mobile' },
+            { title: 'Senior Mobile Engineer (iOS/Android)', dept: 'Web & Mobile',    type: 'Remote • Full Time', tag: '💻 Web & Mobile' },
+            { title: 'IoT & Embedded Systems Engineer',      dept: 'IoT',             type: 'Hybrid • Full Time', tag: '📡 IoT' },
+            { title: 'Engagement Lead — Outsourcing Pods',   dept: 'IT Outsourcing',  type: 'Hybrid • Full Time', tag: '🤝 Outsourcing' },
           ].map((job, i) => (
             <motion.div key={i} className="job"
               initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
@@ -704,18 +693,18 @@ export default function App() {
                 <h3>{job.title}</h3>
                 <p>{job.type}</p>
               </div>
-              <button className="btn-apply" disabled>Apply Now →</button>
+              <button className="btn-apply">Apply Now →</button>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ── CONTACT ────────────────────────────────────────────── */}
-      <section id="contact" className="section container">
+      <section className="section container">
         <motion.div className="section-header"
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <span className="section-tag">Get In Touch</span>
+          <span id="contact" className="section-tag">Get In Touch</span>
           <h2>Contact Us</h2>
           <p className="section-sub">Tell us about your project and we'll get back within 24 hours.</p>
         </motion.div>
@@ -758,33 +747,6 @@ export default function App() {
           {/* ── Right form ── */}
           <div className="contact-form-wrap">
             <form onSubmit={handleSend} noValidate>
-              {/* Honeypot — invisible to humans, irresistible to bots */}
-              <input
-                type="text" name="_gotcha"
-                tabIndex={-1} autoComplete="off"
-                value={form._gotcha} onChange={handleField}
-                className="honeypot" aria-hidden="true"
-              />
-
-              <AnimatePresence>
-                {formStatus === 'success' && (
-                  <motion.div
-                    className="form-status form-status-success" role="status"
-                    initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-                    <strong>Thanks — your message is on its way.</strong>
-                    <span>We'll reply within 24 hours.</span>
-                  </motion.div>
-                )}
-                {formStatus === 'error' && (
-                  <motion.div
-                    className="form-status form-status-error" role="alert"
-                    initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
-                    <strong>We couldn't send your message.</strong>
-                    <span>Please try again, or email us at hello@daanvitech.com.</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
               <div className="contact-row">
                 <div className="field-group">
                   <label>Full Name <span className="req">*</span></label>
@@ -836,6 +798,25 @@ export default function App() {
                   ? <>✅ Message sent! We'll be in touch soon.</>
                   : <>Send Message <span className="btn-arrow">→</span></>}
               </button>
+
+              <AnimatePresence>
+                {formStatus === 'success' && (
+                  <motion.div
+                    className="form-status form-status-success" role="status"
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <strong>Thanks — your message is on its way.</strong>
+                    <span>We'll reply within 24 hours.</span>
+                  </motion.div>
+                )}
+                {formStatus === 'error' && (
+                  <motion.div
+                    className="form-status form-status-error" role="alert"
+                    initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+                    <strong>We couldn't send your message.</strong>
+                    <span>Please try again, or email us at hello@daanvitech.com.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </form>
           </div>
         </motion.div>
@@ -850,13 +831,13 @@ export default function App() {
               <img src="/logo.png" className="logo" alt="Daanvi" width="1024" height="301" />
               <p className="footer-tagline">Building the Next Generation of Intelligent Solutions.</p>
               <div className="social-links">
-                <a href="https://www.linkedin.com/company/daanvi-technologies-private-limited/about/?viewAsMember=true" className="social-btn" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/company/daanvi-technologies-private-limited/about/?viewAsMember=true" className="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
                 </a>
-                <a href="https://x.com/Daanvitech" className="social-btn" aria-label="Twitter / X">
+                <a href="https://x.com/Daanvitech" className="social-btn" aria-label="Twitter / X" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="https://github.com/daanvitech" className="social-btn" aria-label="GitHub">
+                <a href="https://github.com/daanvitech" className="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
                 </a>
               </div>
@@ -874,12 +855,11 @@ export default function App() {
             {/* Services col */}
             <div className="footer-col">
               <h4>Services</h4>
-              <a href="#">Web & Mobile Development</a>
-              <a href="#">IT Outsourcing & Staff Augmentation</a>
               <a href="#">Agentic AI Systems</a>
-              <a href="#">Edge Intelligence & IIoT</a>
-              <a href="#">GreenTech & ESG Solutions</a>
               <a href="#">Vertical AI Solutions</a>
+              <a href="#">Web & Mobile Development</a>
+              <a href="#">IoT & Connected Systems</a>
+              <a href="#">IT Outsourcing</a>
             </div>
 
             {/* Contact col */}

@@ -1979,6 +1979,14 @@ body.light .mobile-link    { color: rgba(255,255,255,0.9); border-bottom-color: 
 }
 .cookie-accept:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(34,211,238,0.35); }
 
+/* Light-theme cookie banner: keep the dark skin, force light foreground */
+body.light .cookie-banner          { background: rgba(5,8,22,0.97); border-top-color: rgba(255,255,255,0.09); }
+body.light .cookie-text p          { color: rgba(255,255,255,0.7); }
+body.light .cookie-link            { color: #22d3ee; }
+body.light .cookie-decline         { border-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.7); }
+body.light .cookie-decline:hover   { border-color: rgba(255,255,255,0.4); color: #fff; }
+
+
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE — TABLET  ≤ 900 px
 ═══════════════════════════════════════════════════════════════ */
