@@ -1,6 +1,19 @@
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import './index.css'
+
+type JobStatus = 'active' | 'inactive' | 'closed'
+type Job = {
+  title: string
+  dept: string
+  type: string
+  tag: string
+  status: JobStatus
+  experience?: string
+  technologies?: string[]
+  responsibilities?: string[]
+  applyUrl?: string
+}
 
 const t = {
   home: 'Home',
@@ -10,52 +23,37 @@ const t = {
   careers: 'Careers',
   contact: 'Contact',
   hero: 'Engineering the Enterprise Technology of the AI Era',
-  sub: 'Daanvi Technologies builds across Agentic AI, Vertical AI, Web & Mobile, IoT, and IT Outsourcing — delivering the intelligent systems and engineering teams that define enterprise technology in the AI era.'
+  sub: 'Daanvi Technologies operates at the intersection of AI, connected systems, and modern software engineering — building intelligent platforms across AI Systems, Web & Mobile, IoT, and enterprise IT services for the next generation of businesses.'
 }
 
 const services = [
   {
-    title: 'Agentic AI Systems',
-    icon: '🤖',
-    img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=500&q=80&auto=format&fit=crop',
-    desc: 'Autonomous AI agents that plan, reason, and execute complex multi-step enterprise workflows — reducing manual effort end-to-end.',
-    tag: 'AI-Native'
-  },
-  {
-    title: 'Vertical AI Solutions',
-    icon: '🎯',
-    img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80&auto=format&fit=crop',
-    desc: 'Deep-domain AI for Healthcare diagnostics, Financial Services, and Smart Manufacturing — purpose-built for high-impact industries.',
-    tag: 'Industry-Specific'
+    title: 'AI Systems',
+    img: '/services/ai-systems.jpg',
+    desc: 'Autonomous agents and deep-domain AI built for high-impact industries — from multi-step enterprise workflows to purpose-built systems for healthcare, financial services, and manufacturing.',
   },
   {
     title: 'Web & Mobile Development',
-    icon: '💻',
-    img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80&auto=format&fit=crop',
+    img: '/services/web-mobile.jpg',
     desc: 'Custom web applications, mobile apps, and SaaS products built with modern stacks — from MVP to production-ready at startup speed.',
-    tag: 'Ship Fast'
   },
   {
     title: 'IoT & Connected Systems',
-    icon: '📡',
-    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80&auto=format&fit=crop',
+    img: '/services/iot.jpg',
     desc: 'IoT platforms, embedded firmware, and connected device systems — real-time telemetry, device management, and field-grade reliability for industrial and consumer deployments.',
-    tag: 'Connected'
   },
   {
     title: 'IT Outsourcing',
-    icon: '🤝',
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80&auto=format&fit=crop',
+    img: '/services/it-outsourcing.jpg',
     desc: 'Dedicated engineering teams and offshore development pods — skilled talent that plugs into your workflow from day one to deliver end-to-end.',
-    tag: 'Scale Teams'
   }
 ]
 
 const stats = [
   { value: '2026', label: 'Year Founded' },
-  { value: '5', label: 'Core Services' },
-  { value: '11', label: 'Domain Categories' },
-  { value: '80+', label: 'Industry Domains' }
+  { value: '4', label: 'Core Services' },
+  { value: '9', label: 'Domain Categories' },
+  { value: '75+', label: 'Industry Domains' }
 ]
 
 const sectorGroups = [
@@ -102,28 +100,16 @@ const sectorGroups = [
     sectors: ['Hospital Management Systems', 'Telemedicine Platforms', 'Medical Diagnostics Software', 'Electronic Health Records (EHR)', 'Pharmaceutical Systems', 'Biotech Platforms', 'Health Monitoring Systems']
   },
   {
-    category: 'IoT & Connected Systems',
+    category: 'IoT & Embedded Engineering',
     icon: '📡',
-    desc: 'IoT platforms, embedded firmware, and connected device systems — real-time telemetry, device fleets, and field-grade reliability for industrial and consumer deployments.',
+    desc: 'From smart factories to consumer devices and sensor fleets — the industrial and consumer verticals where embedded engineering meets real-world reliability at scale.',
     sectors: ['Industrial IoT', 'Consumer IoT', 'Embedded Systems', 'IoT Platforms', 'Device Management', 'Real-Time Monitoring', 'Sensor Networks', 'Smart Manufacturing Systems']
-  },
-  {
-    category: 'Cybersecurity & Compliance',
-    icon: '🔐',
-    desc: 'Application security, identity, threat detection, and zero-trust architectures aligned to the compliance frameworks your auditors actually care about.',
-    sectors: ['Application Security', 'Cloud Security', 'Identity & Access Management', 'Threat Detection Systems', 'SOC Platforms', 'Zero Trust Architecture', 'Data Protection', 'Security Auditing Tools']
   },
   {
     category: 'Industry-Specific Platforms',
     icon: '🌐',
     desc: 'Retail, logistics, real estate, travel, media, telecom, and public-sector platforms tailored to the workflows each industry actually runs on.',
     sectors: ['Retail Systems', 'Supply Chain & Logistics', 'Real Estate Technology', 'Travel & Hospitality Systems', 'Media & Entertainment Platforms', 'Telecom Platforms', 'Energy & Utilities Systems', 'Government & Public Sector Systems', 'Agriculture Technology (AgriTech)']
-  },
-  {
-    category: 'Emerging & Advanced Tech',
-    icon: '🚀',
-    desc: 'Blockchain, Web3, AR/VR, robotics, and spatial computing — frontier technology built with the same engineering rigor as production systems.',
-    sectors: ['Blockchain Applications', 'Web3 Platforms', 'AR/VR Systems', 'Metaverse Applications', 'Robotics Software', 'Autonomous Systems', 'Spatial Computing', 'Quantum-Ready Systems']
   }
 ]
 
@@ -138,25 +124,18 @@ const whyUs = [
   {
     icon: '🎯',
     title: 'Skin in the Game',
-    desc: 'We are a startup too. We are not billing hours — we are building a company. Your pilot is our proof of concept, which means we are as invested in making it work as you are.'
+    desc: 'We are building our company while helping you build better systems. We are not focused on billing hours — we are focused on delivering results. Your pilot becomes our proof of capability, which means we are deeply invested in making it successful.'
   },
   {
     icon: '🔬',
     title: 'Technical Depth, Not Buzzwords',
-    desc: 'Every service we offer is backed by hands-on engineering capability. We will not propose AI for a problem that does not need it, and we will not oversell what we can deliver today.'
+    desc: 'Every solution we build is grounded in real engineering expertise, not marketing language. Our strongest capabilities are in AI — including agents, retrieval systems, evaluations, fine-tuning, and production-grade deployments. We focus on building systems that are reliable, scalable, and measurable in real-world environments.'
   },
   {
     icon: '🤝',
     title: 'You Shape the Product',
-    desc: 'Our first clients are partners, not just customers. Your real-world problems directly influence what we build. Early partners get influence, preferential pricing, and a long-term relationship.'
+    desc: 'Our early clients are collaborators, not just customers. Your real-world challenges directly influence what we build and improve. Early partners receive closer collaboration, preferential pricing, faster iteration cycles, and the opportunity to shape long-term product direction.'
   }
-]
-
-const techStack = [
-  'PyTorch', 'LangChain', 'AWS', 'Kubernetes', 'TensorFlow', 'Python',
-  'TypeScript', 'Docker', 'Azure IoT', 'Google Cloud', 'MQTT', 'Apache Kafka',
-  'Rust', 'WebAssembly', 'Apache Spark', 'Terraform', 'Ray', 'ONNX Runtime',
-  'OpenTelemetry', 'Grafana', 'TimescaleDB', 'Qdrant'
 ]
 
 const navIds = ['home', 'services', 'about', 'clients', 'careers', 'contact']
@@ -175,12 +154,155 @@ export default function App() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [touched, setTouched] = useState<Record<string, boolean>>({})
+  const [, setTouched] = useState<Record<string, boolean>>({})
 
   // Cookie banner
   const [cookieOk, setCookieOk] = useState(() => {
     try { return localStorage.getItem('cookie_ok') === '1' } catch { return false }
   })
+
+  const [jobs, setJobs] = useState<Job[]>([])
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('careers.json', { cache: 'no-cache' })
+      .then(r => r.json())
+      .then((data: { jobs: Job[] }) => { if (!cancelled) setJobs(data.jobs ?? []) })
+      .catch(() => { if (!cancelled) setJobs([]) })
+    return () => { cancelled = true }
+  }, [])
+
+  // ── Apply modal ──────────────────────────────────────────────
+  const [applyJob, setApplyJob] = useState<Job | null>(null)
+  const [applyForm, setApplyForm] = useState({ name: '', email: '', phone: '', pitch: '' })
+  const [applyErrors, setApplyErrors] = useState<Record<string, string>>({})
+  const [applyStatus, setApplyStatus] = useState<'idle' | 'loading'>('idle')
+  const [applySubmitError, setApplySubmitError] = useState<string>('')
+  const [listening, setListening] = useState(false)
+  const recognitionRef = useRef<any>(null)
+  const pitchBaseRef = useRef<string>('')
+
+  const openApply = (job: Job) => {
+    setApplyJob(job)
+    setApplyForm({ name: '', email: '', phone: '', pitch: '' })
+    setApplyErrors({})
+    setApplyStatus('idle')
+    setApplySubmitError('')
+  }
+  const closeApply = () => {
+    if (recognitionRef.current) { try { recognitionRef.current.stop() } catch {} }
+    setListening(false)
+    setApplyJob(null)
+  }
+
+  useEffect(() => {
+    if (!applyJob) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeApply() }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [applyJob])
+
+  const validateApply = () => {
+    const errs: Record<string, string> = {}
+    if (!applyForm.name.trim()) errs.name = 'Name is required'
+    const email = applyForm.email.trim()
+    if (!email) errs.email = 'Email is required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = 'Enter a valid email'
+    const phone = applyForm.phone.trim()
+    const phoneDigits = phone.replace(/\D/g, '')
+    if (!phone) errs.phone = 'Mobile number is required'
+    else if (phoneDigits.length < 7 || phoneDigits.length > 15) errs.phone = 'Enter a valid mobile number'
+    const pitch = applyForm.pitch.trim()
+    if (!pitch) errs.pitch = 'Tell us why you are a great fit'
+    else if (pitch.length < 30) errs.pitch = 'Please write at least 30 characters'
+    return errs
+  }
+
+  const handleApplySubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setApplySubmitError('')
+    const errs = validateApply()
+    setApplyErrors(errs)
+    if (Object.keys(errs).length > 0) return
+    if (!applyJob) return
+    setApplyStatus('loading')
+    try {
+      const payload = {
+        _subject: `Job Application: ${applyJob.title}`,
+        position: applyJob.title,
+        department: applyJob.dept,
+        name: applyForm.name.trim(),
+        email: applyForm.email.trim(),
+        phone: applyForm.phone.trim(),
+        message: applyForm.pitch.trim(),
+      }
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const data = await res.json().catch(() => ({} as any))
+      if (!res.ok) {
+        const reason = Array.isArray(data?.errors) && data.errors.length
+          ? data.errors.map((er: any) => er.message).filter(Boolean).join(' • ')
+          : (data?.error || `Submission failed (HTTP ${res.status}).`)
+        throw new Error(reason)
+      }
+      setApplyStatus('idle')
+      setToast({ msg: '✅ Application sent — we\'ll be in touch soon.', ok: true })
+      setTimeout(() => setToast(null), 4000)
+      closeApply()
+    } catch (err: any) {
+      setApplyStatus('idle')
+      setApplySubmitError(err?.message || 'Could not submit application. Please try again.')
+    }
+  }
+
+  const toggleListening = () => {
+    const SR: any = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    if (!SR) {
+      setToast({ msg: 'Voice input is not supported in this browser.', ok: false })
+      setTimeout(() => setToast(null), 3500)
+      return
+    }
+    if (listening) {
+      try { recognitionRef.current?.stop() } catch {}
+      setListening(false)
+      return
+    }
+    const rec = new SR()
+    rec.continuous = true
+    rec.interimResults = true
+    rec.lang = 'en-US'
+    pitchBaseRef.current = applyForm.pitch
+    rec.onresult = (event: any) => {
+      let finalText = ''
+      let interim = ''
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript
+        if (event.results[i].isFinal) finalText += transcript
+        else interim += transcript
+      }
+      if (finalText) {
+        pitchBaseRef.current = (pitchBaseRef.current + ' ' + finalText).replace(/\s+/g, ' ').trim()
+      }
+      const combined = (pitchBaseRef.current + (interim ? ' ' + interim : '')).replace(/\s+/g, ' ').trimStart()
+      setApplyForm(f => ({ ...f, pitch: combined }))
+    }
+    rec.onerror = () => setListening(false)
+    rec.onend = () => setListening(false)
+    recognitionRef.current = rec
+    try {
+      rec.start()
+      setListening(true)
+    } catch {
+      setListening(false)
+    }
+  }
 
   const particles = useMemo(() =>
     Array.from({ length: 22 }, (_, i) => ({
@@ -360,7 +482,7 @@ export default function App() {
             transition={{ duration: 0.6 }}
             className="logo-wrap"
           >
-            <img src="/logo.png" className="logo" alt="Daanvi Technologies" width="1024" height="301" />
+            <img src="/logo.png" className="logo" alt="Daanvi Technologies" width="800" height="235" />
           </motion.div>
 
           <nav>
@@ -453,12 +575,12 @@ export default function App() {
           <div className="orbit orbit-ring-3"><div className="orbit-dot dot-purple" /></div>
           <div className="hero-core">
             <div className="core-glow" />
-            <img src="/logo.png" className="hero-logo" alt="Daanvi" width="1024" height="301" />
+            <img src="/logo.png" className="hero-logo" alt="Daanvi" width="800" height="235" />
           </div>
-          <div className="float-badge badge-ai"> AI & Data</div>
-          <div className="float-badge badge-cloud"> Cybersecurity</div>
+          <div className="float-badge badge-ai"> AI Systems</div>
+          <div className="float-badge badge-cloud"> Web & Mobile</div>
           <div className="float-badge badge-iot"> IoT</div>
-          <div className="float-badge badge-sec"> Web & Mobile</div>
+          <div className="float-badge badge-sec"> IT Outsourcing</div>
         </motion.div>
       </section>
 
@@ -485,23 +607,33 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">What We Build</span>
           <h2>Our Services</h2>
-          <p className="section-sub">Five focused areas where our team has genuine technical depth and a clear point of view</p>
+          <p className="section-sub">Four focused areas where our team has genuine technical depth and a clear point of view</p>
         </motion.div>
         <div className="grid">
           {services.map((item, i) => (
             <motion.div key={i} className="card"
-              initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.65 }}
-              whileHover={{ y: -12, scale: 1.02 }}>
+              initial={{ opacity: 0, y: 90, scale: 0.92, rotateX: 8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{
+                delay: i * 0.14,
+                type: 'spring',
+                stiffness: 80,
+                damping: 16,
+                mass: 0.9
+              }}
+              whileHover={{
+                y: -18,
+                scale: 1.025,
+                transition: { type: 'spring', stiffness: 260, damping: 20 }
+              }}
+              style={{ transformPerspective: 1200 }}>
               <div className="card-img-wrap">
-                <img src={item.img} className="card-img" alt={item.title} loading="lazy" width="500" height="333" />
+                <img src={item.img} className="card-img" alt={item.title} loading="lazy" width="1000" height="667" />
               </div>
-              <div className="card-icon">{item.icon}</div>
               <div className="card-body">
-                <div className="card-tag">{item.tag}</div>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
-                <a className="card-link" href="#">Learn more →</a>
               </div>
               <div className="card-shimmer" />
             </motion.div>
@@ -568,14 +700,14 @@ export default function App() {
               a clear view of the problems we want to solve.
             </p>
             <p className="about-desc">
-              We build across five focused areas — Agentic AI Systems, Vertical AI Solutions,
-              Web & Mobile Development, IoT & Connected Systems, and IT Outsourcing — starting
-              with healthcare, financial services, and manufacturing in India, where the problems
-              are real, the market is large, and good software is still scarce. If you have a
+              We build across four focused areas — AI Systems, Web & Mobile Development,
+              IoT & Connected Systems, and IT Outsourcing — starting with healthcare,
+              financial services, and manufacturing in India, where the problems are real,
+              the market is large, and good software is still scarce. If you have a
               problem in these spaces, we want to talk.
             </p>
             <div className="about-features">
-              {['Agentic AI-First', 'Vertical AI', 'Web & Mobile Ready', 'IoT-Enabled', 'Outsourcing'].map((f, i) => (
+              {['AI Systems', 'Web & Mobile Ready', 'IoT-Enabled', 'Outsourcing'].map((f, i) => (
                 <div key={i} className="feature-chip">✓ {f}</div>
               ))}
             </div>
@@ -590,7 +722,7 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Why Work With Us</span>
           <h2>Why Be Our First Client</h2>
-          <p className="section-sub">We don't have a client list yet — here's why that's actually an advantage for you</p>
+          <p className="section-sub">We may not have a long client list yet — and that can actually work in your favor</p>
         </motion.div>
 
         <div className="why-grid">
@@ -615,7 +747,7 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Where We Build</span>
           <h2>Domains & Industries We Build For</h2>
-          <p className="section-sub">From enterprise systems to emerging tech — we bring deep engineering capability across 11 domain categories and 80+ industry verticals, anchored in our five focus areas: Agentic AI, Vertical AI, Web & Mobile, IoT, and IT Outsourcing.</p>
+          <p className="section-sub">9 domain categories and 75+ industry verticals where we apply our four core services — AI Systems, Web & Mobile, IoT, and engineering teams — to ship production-grade software across enterprise, regulated industries, and modern software platforms.</p>
         </motion.div>
 
         <div className="sector-groups-grid">
@@ -669,33 +801,84 @@ export default function App() {
           viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <span className="section-tag">Join Our Team</span>
           <h2>Careers</h2>
-          <p className="section-sub">We're hiring engineers who want to build real Agentic AI, Vertical AI, Web & Mobile, and IoT systems — and lead client delivery pods</p>
+          <p className="section-sub">We're hiring engineers who want to build real AI Systems, Web & Mobile, and IoT — and lead client delivery pods</p>
         </motion.div>
         <div className="jobs">
-          {[
-            { title: 'Senior AI / ML Engineer',              dept: 'Agentic AI',      type: 'Hybrid • Full Time', tag: '🤖 AI' },
-            { title: 'LLM & Agentic Systems Engineer',       dept: 'Agentic AI',      type: 'Remote • Full Time', tag: '🤖 AI' },
-            { title: 'Vertical AI Solutions Engineer',       dept: 'Vertical AI',     type: 'Hybrid • Full Time', tag: '🎯 Vertical AI' },
-            { title: 'Senior Full-Stack Engineer',           dept: 'Web & Mobile',    type: 'Remote • Full Time', tag: '💻 Web & Mobile' },
-            { title: 'Senior Mobile Engineer (iOS/Android)', dept: 'Web & Mobile',    type: 'Remote • Full Time', tag: '💻 Web & Mobile' },
-            { title: 'IoT & Embedded Systems Engineer',      dept: 'IoT',             type: 'Hybrid • Full Time', tag: '📡 IoT' },
-            { title: 'Engagement Lead — Outsourcing Pods',   dept: 'IT Outsourcing',  type: 'Hybrid • Full Time', tag: '🤝 Outsourcing' },
-          ].map((job, i) => (
-            <motion.div key={i} className="job"
-              initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6 }}
-              whileHover={{ x: 8 }}>
-              <div className="job-info">
-                <div className="job-meta">
-                  <span className="job-dept">{job.dept}</span>
-                  <span className="job-tag">{job.tag}</span>
+          {jobs.length === 0 && (
+            <p className="section-sub" style={{ textAlign: 'center' }}>No open positions right now — check back soon.</p>
+          )}
+          {jobs.map((job, i) => {
+            const isActive = job.status === 'active'
+            const isClosed = job.status === 'closed'
+            const hasDetails = !!(job.experience || job.technologies?.length || job.responsibilities?.length)
+            return (
+              <motion.div key={i} className={`job job-${job.status}${hasDetails ? ' job-has-details' : ''}`}
+                initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.12, duration: 0.6 }}
+                tabIndex={hasDetails ? 0 : undefined}>
+                <div className="job-row">
+                  <div className="job-info">
+                    <div className="job-meta">
+                      <span className="job-dept">{job.dept}</span>
+                      <span className="job-tag">{job.tag}</span>
+                      {job.status === 'inactive' && <span className="job-status-pill job-status-inactive">Paused</span>}
+                      {isClosed && <span className="job-status-pill job-status-closed">Closed</span>}
+                    </div>
+                    <h3>{job.title}</h3>
+                    <p>{job.type}</p>
+                  </div>
+                  <div className="job-row-right">
+                    {hasDetails && (
+                      <span className="job-chevron" aria-hidden="true">▾</span>
+                    )}
+                    {isActive ? (
+                      <button className="btn-apply" type="button" onClick={() => openApply(job)}>
+                        Apply Now →
+                      </button>
+                    ) : (
+                      <button className="btn-apply" disabled aria-disabled="true">
+                        {isClosed ? 'Closed' : 'Apply Now →'}
+                      </button>
+                    )}
+                  </div>
                 </div>
-                <h3>{job.title}</h3>
-                <p>{job.type}</p>
-              </div>
-              <button className="btn-apply">Apply Now →</button>
-            </motion.div>
-          ))}
+                {hasDetails && (
+                  <div className="job-details-wrap" aria-hidden="false">
+                    <div className="job-details" role="region" aria-label={`Details for ${job.title}`}>
+                      <div className="job-details-grid">
+                        {job.experience && (
+                          <div className="job-details-block">
+                            <span className="job-details-label">Experience</span>
+                            <span className="job-details-value">{job.experience}</span>
+                          </div>
+                        )}
+                        {job.technologies && job.technologies.length > 0 && (
+                          <div className="job-details-block">
+                            <span className="job-details-label">Technologies</span>
+                            <div className="job-tech-chips">
+                              {job.technologies.map((tech, ti) => (
+                                <span key={ti} className="job-tech-chip">{tech}</span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      {job.responsibilities && job.responsibilities.length > 0 && (
+                        <div className="job-details-block">
+                          <span className="job-details-label">Roles & Responsibilities</span>
+                          <ul className="job-resp-list">
+                            {job.responsibilities.map((r, ri) => (
+                              <li key={ri}>{r}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </section>
 
@@ -828,7 +1011,7 @@ export default function App() {
           <div className="footer-grid">
             {/* Brand col */}
             <div className="footer-col brand-col">
-              <img src="/logo.png" className="logo" alt="Daanvi" width="1024" height="301" />
+              <img src="/logo.png" className="logo" alt="Daanvi" width="800" height="235" />
               <p className="footer-tagline">Building the Next Generation of Intelligent Solutions.</p>
               <div className="social-links">
                 <a href="https://www.linkedin.com/company/daanvi-technologies-private-limited/about/?viewAsMember=true" className="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
@@ -855,11 +1038,10 @@ export default function App() {
             {/* Services col */}
             <div className="footer-col">
               <h4>Services</h4>
-              <a href="#">Agentic AI Systems</a>
-              <a href="#">Vertical AI Solutions</a>
-              <a href="#">Web & Mobile Development</a>
-              <a href="#">IoT & Connected Systems</a>
-              <a href="#">IT Outsourcing</a>
+              <a href="#services">AI Systems</a>
+              <a href="#services">Web & Mobile Development</a>
+              <a href="#services">IoT & Connected Systems</a>
+              <a href="#services">IT Outsourcing</a>
             </div>
 
             {/* Contact col */}
@@ -895,6 +1077,98 @@ export default function App() {
           >
             ↑
           </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* ── APPLY MODAL ─────────────────────────────────────────── */}
+      <AnimatePresence>
+        {applyJob && (
+          <motion.div className="apply-overlay"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onMouseDown={(e) => { if (e.target === e.currentTarget) closeApply() }}>
+            <motion.div className="apply-modal" role="dialog" aria-modal="true" aria-labelledby="apply-title"
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.96 }}
+              transition={{ duration: 0.25 }}>
+              <button className="apply-close" type="button" onClick={closeApply} aria-label="Close">×</button>
+              <div className="apply-header">
+                <span className="section-tag">{applyJob.dept}</span>
+                <h3 id="apply-title">Apply: {applyJob.title}</h3>
+                <p>{applyJob.type}</p>
+              </div>
+              <form className="apply-form" onSubmit={handleApplySubmit} noValidate>
+                <div className="field-group">
+                  <label>Full Name <span className="req">*</span></label>
+                  <input
+                    type="text"
+                    value={applyForm.name}
+                    onChange={(e) => setApplyForm(f => ({ ...f, name: e.target.value }))}
+                    className={applyErrors.name ? 'input-error' : ''}
+                    placeholder="Jane Doe"
+                    disabled={applyStatus === 'loading'} />
+                  {applyErrors.name && <span className="field-error">{applyErrors.name}</span>}
+                </div>
+                <div className="field-group">
+                  <label>Email <span className="req">*</span></label>
+                  <input
+                    type="email"
+                    value={applyForm.email}
+                    onChange={(e) => setApplyForm(f => ({ ...f, email: e.target.value }))}
+                    className={applyErrors.email ? 'input-error' : ''}
+                    placeholder="you@example.com"
+                    disabled={applyStatus === 'loading'} />
+                  {applyErrors.email && <span className="field-error">{applyErrors.email}</span>}
+                </div>
+                <div className="field-group">
+                  <label>Mobile Number <span className="req">*</span></label>
+                  <input
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    value={applyForm.phone}
+                    onChange={(e) => setApplyForm(f => ({ ...f, phone: e.target.value }))}
+                    className={applyErrors.phone ? 'input-error' : ''}
+                    placeholder="+91 XXXXX XXXXX"
+                    disabled={applyStatus === 'loading'} />
+                  {applyErrors.phone && <span className="field-error">{applyErrors.phone}</span>}
+                </div>
+                <div className="field-group">
+                  <label>Why are you a great fit for this role? <span className="req">*</span></label>
+                  <div className="apply-pitch-wrap">
+                    <textarea
+                      rows={6}
+                      value={applyForm.pitch}
+                      onChange={(e) => { pitchBaseRef.current = e.target.value; setApplyForm(f => ({ ...f, pitch: e.target.value })) }}
+                      className={applyErrors.pitch ? 'input-error' : ''}
+                      placeholder="Share relevant experience, projects, and what excites you about this role…"
+                      disabled={applyStatus === 'loading'} />
+                    <button
+                      type="button"
+                      className={`apply-mic${listening ? ' listening' : ''}`}
+                      onClick={toggleListening}
+                      aria-label={listening ? 'Stop voice input' : 'Start voice input'}
+                      title={listening ? 'Stop voice input' : 'Speak to fill the field'}>
+                      {listening ? '⏹ Stop' : '🎙 Speak'}
+                    </button>
+                  </div>
+                  {applyErrors.pitch && <span className="field-error">{applyErrors.pitch}</span>}
+                </div>
+                {applySubmitError && (
+                  <div className="apply-submit-error" role="alert">
+                    <strong>Submission failed.</strong> {applySubmitError}
+                  </div>
+                )}
+                <div className="apply-actions">
+                  <button type="button" className="apply-cancel" onClick={closeApply} disabled={applyStatus === 'loading'}>Cancel</button>
+                  <button type="submit" className="btn-apply" disabled={applyStatus === 'loading'}>
+                    {applyStatus === 'loading' ? 'Sending…' : 'Submit Application'}
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 

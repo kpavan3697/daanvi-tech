@@ -1,0 +1,102 @@
+{
+  "jobs": [
+    {
+      "title": "Senior AI / ML Engineer",
+      "dept": "AI Systems",
+      "type": "Hybrid • Full Time",
+      "tag": "🤖 AI",
+      "status": "active",
+      "experience": "5+ years",
+      "technologies": ["Python", "PyTorch", "TensorFlow", "LangChain", "AWS SageMaker", "Vector DBs"],
+      "responsibilities": [
+        "Architect next-generation ML platforms that learn, adapt, and self-optimize across the entire production lifecycle",
+        "Design retrieval-augmented and continually fine-tuned LLM pipelines that evolve with real-world feedback loops",
+        "Engineer inference systems balancing latency, cost, and accuracy across multi-cloud and edge runtimes",
+        "Build evaluation harnesses, synthetic data factories, and red-team frameworks to harden models for enterprise deployment",
+        "Pioneer responsible-AI guardrails, bias detection, and explainability layers baked into every release",
+        "Drive research-to-production pipelines that turn cutting-edge papers into shipping features within weeks",
+        "Lead model lifecycle management — versioning, drift detection, automated retraining, and canary rollouts",
+        "Design distributed training infrastructure on GPU/TPU clusters with elastic scheduling and fault tolerance",
+        "Mentor engineers, lead architecture reviews, and define the technical north star for the AI organization",
+        "Partner with leadership to shape AI strategy, intellectual property, and long-horizon roadmaps"
+      ],
+      "applyUrl": "mailto:hello@daanvitech.com?subject=Application: Senior AI / ML Engineer"
+    },
+    {
+      "title": "Senior Full-Stack Engineer",
+      "dept": "Web & Mobile",
+      "type": "Remote • Full Time",
+      "tag": "💻 Web & Mobile",
+      "status": "inactive",
+      "experience": "5-10 years",
+      "technologies": ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
+      "responsibilities": [
+        "Architect AI-native web experiences where the interface anticipates intent, adapts in real time, and learns from every interaction",
+        "Engineer high-performance frontends with streaming, optimistic UI, and sub-second time-to-interactive on global edge networks",
+        "Design resilient backend services with event-driven microservices, GraphQL gateways, and serverless compute fabrics",
+        "Embed generative UI patterns — copilots, dynamic forms, in-context assistance — into every product surface",
+        "Build observability into the stack with distributed tracing, real-user monitoring, and AI-assisted error triage",
+        "Champion accessibility, internationalization, and inclusive design so products serve every user, everywhere",
+        "Design API contracts, schema evolution strategies, and backwards-compatible versioning across services",
+        "Own performance budgets — Core Web Vitals, bundle size, runtime efficiency — and enforce them in CI",
+        "Lead technical reviews, raise the engineering bar through testing strategy, and mentor the next generation of engineers",
+        "Collaborate with product, design, and AI teams to ship features that feel like magic and run like infrastructure"
+      ],
+      "applyUrl": "mailto:hello@daanvitech.com?subject=Application: Senior Full-Stack Engineer"
+    },
+    {
+      "title": "Senior Mobile Engineer (iOS/Android)",
+      "dept": "Web & Mobile",
+      "type": "Remote • Full Time",
+      "tag": "💻 Web & Mobile",
+      "status": "inactive",
+      "experience": "4-7 years",
+      "technologies": ["Swift", "Kotlin", "React Native", "Firebase", "GraphQL"],
+      "responsibilities": [
+        "Build mobile experiences powered by on-device intelligence — running quantized LLMs, vision models, and ranking systems locally",
+        "Engineer cross-platform architectures that share 80% of code while feeling fully native on each platform",
+        "Optimize startup time, battery, memory, and network efficiency to deliver flagship-grade performance",
+        "Design offline-first sync engines, conflict resolution, and resilient state machines for unreliable network conditions",
+        "Integrate platform AI frameworks — Core ML, ML Kit, Neural Engine — to push intelligence to the device edge",
+        "Own the release pipeline: CI/CD, staged rollouts, feature flags, crash analytics, and live observability",
+        "Pioneer privacy-preserving techniques like federated learning and on-device personalization",
+        "Design native module bridges, custom rendering layers, and platform-specific UX adaptations",
+        "Drive app store strategy — review readiness, listing optimization, and rapid iteration on user feedback",
+        "Lead mobile architecture, mentor engineers, and shape the long-term mobile platform vision"
+      ],
+      "applyUrl": "mailto:hello@daanvitech.com?subject=Application: Senior Mobile Engineer"
+    },
+    {
+      "title": "IoT & Embedded Systems Engineer",
+      "dept": "IoT",
+      "type": "Hybrid • Full Time",
+      "tag": "📡 IoT",
+      "status": "active",
+      "experience": "4+ years",
+      "technologies": ["C / C++",
+        "Python",
+        "PX4 / ArduPilot",
+        "ROS2",
+        "MAVLink",
+        "ESP32",
+        "NVIDIA Jetson",
+        "Computer Vision",
+        "Edge AI"],
+      "responsibilities": [
+        "Engineer autonomous aerial systems combining embedded intelligence, robotics, and real-time edge computing",
+        "Develop flight-control software, navigation pipelines, and mission orchestration systems for UAV platforms",
+        "Build secure drone-to-cloud telemetry and command systems with real-time monitoring and fleet visibility",
+        "Implement autonomous waypoint navigation, obstacle avoidance, geofencing, and fail-safe recovery systems",
+        "Deploy edge AI workloads for computer vision, object detection, landing assistance, and situational awareness",
+        "Integrate GPS, IMU, LiDAR, cameras, and sensor-fusion pipelines for stable and intelligent flight behavior",
+        "Optimize power, payload capacity, thermal efficiency, and flight endurance for production-ready drone systems",
+        "Design resilient communication systems using MAVLink, LTE/5G, mesh networking, and low-latency telemetry protocols",
+        "Build simulation and testing environments using AirSim, Gazebo, PX4 SITL, or ArduPilot SITL",
+        "Develop remote diagnostics, OTA firmware updates, predictive maintenance, and fleet management capabilities",
+        "Collaborate across hardware, AI, cloud, and mechanical engineering teams to deliver fully integrated UAV platforms",
+        "Drive end-to-end drone product development — from embedded firmware and PCB integration to deployment and field operations"
+      ],
+      "applyUrl": "mailto:hello@daanvitech.com?subject=Application: Autonomous Drone Systems Engineer"
+    }
+  ]
+}
